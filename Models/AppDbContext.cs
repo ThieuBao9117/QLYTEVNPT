@@ -1,8 +1,11 @@
 using App.Models.Blog;
 using App.Models.Contacts;
 using App.Models.Product;
+using App.Models.ThongTinNhaThaus;
+using App.Models.DKThaus;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace App.Models 
 {
@@ -76,9 +79,12 @@ namespace App.Models
         public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public DbSet<ProductModel> Products { get; set;}
 
+        
         public DbSet<ProductCategoryProduct>  ProductCategoryProducts { get; set; }
 
         public DbSet<ProductPhoto> ProductPhotos { get; set; }
-        
+        public DbSet<ThongTinNhaThau> ThongTinNhaThaus { get; set;}
+        public DbSet<DKThau> DKThaus { get; set;}
+       
     }
 }

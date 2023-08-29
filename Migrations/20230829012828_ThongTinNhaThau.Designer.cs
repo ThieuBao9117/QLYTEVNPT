@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppMvc.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230824081726_ThongTinNhaThau")]
+    [Migration("20230829012828_ThongTinNhaThau")]
     partial class ThongTinNhaThau
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -341,6 +341,60 @@ namespace AppMvc.Net.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("ProductPhoto");
+                });
+
+            modelBuilder.Entity("App.Models.ThongTinNhaThaus.ThongTinNhaThau", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Anh")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("DT")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("FilMau")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("MoTa")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Nam")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ngay")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("NguoiLienHe")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("PhanLoai")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ten")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("TenDA")
+                        .HasMaxLength(550)
+                        .HasColumnType("nvarchar(550)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ThongTinNhaThaus");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
