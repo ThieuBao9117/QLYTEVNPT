@@ -16,8 +16,6 @@ using App.Models.DKThaus;
 namespace App.Areas.ThongTinNhaThau.Controllers
 {
     [Area("ThongTinNhaThau")]
-    // [Route("admin/ThongTinNhaThau/ThongTinNhaThau/[action]/{id?}")]
-    // [Authorize(Roles = RoleName.Administrator)]
     public class ThongTinNhaThauController : Controller
     {
         private readonly AppDbContext _context;
@@ -27,50 +25,40 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             _context = context;
         }
 
-        // GET: Blog/Category  
-        //    [HttpGet("/ThongTinNhaThau/")]
-        
-      
-        // public async Task<IActionResult> Index()
-        // {
-        //     return View(await _context.ThongTinNhaThaus.ToListAsync());
-        // }
-
-        //  public async Task<IActionResult> Index()
-        // {
- 
-        //     return View(await _context.ThongTinNhaThaus.ToListAsync());
-        // }
-
         [HttpPost("/form2/")]
         [AllowAnonymous]
-        public ActionResult form2(ThongTinNhaThauModel sm)
+        public ActionResult form2(ThongTinNhaThauModel sm, DKThauModel qm)
         {
             ViewBag.Ten = sm.Ten;
             ViewBag.TenDA = sm.TenDA;
             ViewBag.Nam = sm.Nam;
 
+            ThongTinNhaThauModel thongtinnhathaus = new ThongTinNhaThauModel
+            {
+                Ten = sm.Ten,
+                TenDA = sm.TenDA,
+                Nam = sm.Nam
+            };
 
-           
-            ThongTinNhaThauModel thongtinnhathaus = new ThongTinNhaThauModel();
-           
-            thongtinnhathaus.Ten = sm.Ten;
-            thongtinnhathaus.TenDA = sm.TenDA;
-            
-            Create(thongtinnhathaus);
+            DKThauModel dkthaus = new DKThauModel 
+            {
+                MaST = qm.MaST,
+                TenNhaThau = qm.TenNhaThau,
+            };
+
+            _context.ThongTinNhaThaus.Add(thongtinnhathaus);
+            _context.DKThaus.Add(dkthaus);
+            _context.SaveChanges();
+
             return View("Index");
         }
-        
-       
-
-       
 
         [HttpGet("/form2/")]
         [AllowAnonymous]
         public IActionResult Index()
         {
             var ThongTinNhaThau = _context.ThongTinNhaThaus;
-            //var DKThau = _context.DKThaus;
+            var DKThau = _context.DKThaus;
             return View(ThongTinNhaThau);
         }
 
@@ -79,91 +67,5 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         {
             return View();
         }
-
-        // [HttpPost]
-        public  IActionResult Create(ThongTinNhaThauModel thongtinnhathaus)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.ThongTinNhaThaus.Add(thongtinnhathaus);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            // return View(thongtinnhathaus);
-            return View("Index");
-        } 
-
-        //     // var contact = await _context.ThongTinNhaThaus
-        //     //     .FirstOrDefaultAsync(m => m.Id == id);
-        //     // if (contact == null)
-        //     // {
-        //     //     return NotFound();
-        //     // }
-
-        //     return View(ThongTinNhaThau);
-        // }
-
-        // [TempData]
-        // public string StatusMessage {set; get;}
-
-        // [HttpGet("/ThongTinNhaThau/")]
-        // [AllowAnonymous]
-        // public IActionResult SendContact()
-        // {
-        //     return View();
-        // }
-
-        // [HttpPost("/ThongTinNhaThau/")]
-        // [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> SendContact([Bind("ID,Ten,Anh,Ngay,MoTa,TenDA,PhanLoai,DT,NAM,Email,FileMau")] ThongTinNhaThauModel thongTinNhaThau)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-
-        //         thongTinNhaThau.DateSent = DateTime.Now;    
-
-        //         _context.Add(thongTinNhaThau);
-        //         await _context.SaveChangesAsync();
-
-        //         StatusMessage = "Liên hệ của bạn đã được gửi";
-
-        //         return RedirectToAction("Index", "Home");
-        //     }
-
-        //     return View(thongTinNhaThau);
-        // }
-
-
-        // [HttpGet("/admin/contact/delete/{id}")]
-        // public async Task<IActionResult> Delete(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var ThongTinNhaThau = await _context.ThongTinNhaThaus
-        //         .FirstOrDefaultAsync(m => m.Id == id);
-        //     if (contact == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(ThongTinNhaThau);
-        // }
-
-        
-        // [HttpPost("/admin/contact/delete/{id}"), ActionName("Delete")]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> DeleteConfirmed(int id)
-        // {
-        //     var ThongTinNhaThau = await _context.ThongTinNhaThaus.FindAsync(id);
-        //     _context.ThongTinNhaThaus.Remove(ThongTinNhaThau);
-        //     await _context.SaveChangesAsync();
-        //     return RedirectToAction(nameof(Index));
-        // }
-
-          
     }
 }

@@ -11,7 +11,7 @@ namespace App.Models.DKThaus
 
         [Column(TypeName = "nvarchar")]
         [StringLength(550)]
-        public string Ten { get; set; }
+        public string TenNhaThau { get; set; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
