@@ -240,6 +240,10 @@ namespace App
                     name: "default",
                     pattern: "/{controller=Home}/{action=Index}/{id?}"
                 );
+                endpoints.MapControllerRoute(
+                name: "thongtinnhathau",
+                pattern: "ThongTinNhaThau/{action=Index}"
+                );
 
                 endpoints.MapRazorPages();
             });

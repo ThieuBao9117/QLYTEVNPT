@@ -34,7 +34,9 @@
                 <a class="card-link" asp-area="Product" asp-controller="ViewProduct" asp-action="Detail" asp-route-productslug="@product.Slug">
                     Chi tiết
                 </a>
-                <a asp-action="AddToCart" asp-area="Product"  asp-controller="ViewProduct" asp-route-productid="@product.ProductID" class="btn btn-primary ml-4">Đấu Thầu</a>
+                @* <a asp-action="AddToCart" asp-area="Product"  asp-controller="ViewProduct" asp-route-productid="@product.ProductID" class="btn btn-primary ml-4">Đấu Thầu</a> *@
+                @* <a asp-action="Index" asp-controller="/form2"  class="btn btn-primary ml-4">Thông Tin Nhà Thầu</a> *@
+                <a asp-action="Index" asp-controller="/form2"  class="btn btn-primary ml-4">Đấu Thầu</a>
             </div>
         </div>
     }

@@ -12,6 +12,8 @@ using ThongTinNhaThauModel = App.Models.ThongTinNhaThaus.ThongTinNhaThau;
 using DKThauModel = App.Models.DKThaus.DKThau;
 using App.Models.ThongTinNhaThaus;
 using App.Models.DKThaus;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace App.Areas.ThongTinNhaThau.Controllers
 {
@@ -24,10 +26,10 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         {
             _context = context;
         }
-
+       
         [HttpPost("/form2/")]
         [AllowAnonymous]
-        public ActionResult form2(ThongTinNhaThauModel sm, DKThauModel qm)
+        public ActionResult form2(ThongTinNhaThauModel sm, DKThauModel qm, IFormFile file)
         {
             ViewBag.Ten = sm.Ten;
             ViewBag.TenDA = sm.TenDA;
@@ -45,12 +47,22 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 MaST = qm.MaST,
                 TenNhaThau = qm.TenNhaThau,
             };
+             if (file != null && file.Length > 0)
+    {
+        // Lưu trữ tệp trên máy chủ hoặc hệ thống lưu trữ
+            var filePath = System.IO.Path.Combine("Uploads/FileThau", file.FileName);
+            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+    }
 
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.DKThaus.Add(dkthaus);
             _context.SaveChanges();
 
-            return View("Index");
+            //return View("Index");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         [HttpGet("/form2/")]
