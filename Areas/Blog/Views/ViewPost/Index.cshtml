@@ -10,7 +10,7 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="~/">Home</a></li>
+    <li class="breadcrumb-item"><a href="~/"></a></li>
     @if  (category != null)
     {
         var li = category.ListParents();
@@ -40,7 +40,7 @@ else
 @foreach (var post in Model)
 {
     <div class="media border-bottom mb-3 pb-3">
-        <img src="/contents/nophoto.png" class="mr-3 w-25">
+        <!-- <img src="/contents/nophoto.png" class="mr-3 w-25"> -->
         <div class="media-body">
             <h5 class="mt-0">
                 <a asp-controller="ViewPost" asp-action="Detail" asp-route-postslug="@post.Slug">

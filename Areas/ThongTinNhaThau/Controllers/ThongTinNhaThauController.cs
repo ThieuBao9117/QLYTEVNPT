@@ -27,9 +27,9 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             _context = context;
         }
        
-        [HttpPost("/form2/")]
+        [HttpPost("/trangthongtin/")]
         [AllowAnonymous]
-        public ActionResult form2(ThongTinNhaThauModel sm, DKThauModel qm, IFormFile file)
+        public ActionResult trangthongtin(ThongTinNhaThauModel sm, DKThauModel qm, IFormFile file)
         {
             ViewBag.Ten = sm.Ten;
             ViewBag.TenDA = sm.TenDA;
@@ -60,12 +60,12 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.DKThaus.Add(dkthaus);
             _context.SaveChanges();
-
+            TempData["ConfirmationMessage"] = "Thông Tin Đã Được Gửi Về";
             //return View("Index");
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-        [HttpGet("/form2/")]
+        [HttpGet("/trangthongtin/")]
         [AllowAnonymous]
         public IActionResult Index()
         {

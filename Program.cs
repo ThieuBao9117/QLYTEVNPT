@@ -20,7 +20,7 @@ namespace App
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://0.0.0.0:8091");
+                    webBuilder.UseUrls("http://0.0.0.0:8090");
                     webBuilder.UseStartup<Startup>();
                 });
     }

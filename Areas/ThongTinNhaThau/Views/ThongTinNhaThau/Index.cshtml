@@ -1,12 +1,7 @@
-
-<h2>Thông Tin Nhà Thầu</h2>
-
-<p><strong>Tên Nhà Thầu:</strong> @Model.TenNhaThau</p>
-<h4 style="color:purple">
-    <b>Tên:</b>    @ViewBag.Ten <br />
-    <b>Name:</b>  @ViewBag.Nam <br />
-  
-</h4>
+@{
+    ViewData["Title"] = "Đấu Thầu";
+    Layout =  "/Views/Shared/_Layout.cshtml";
+}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -95,8 +90,9 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
         <div class="form-group">
         </div>
     </div>
+        <h1 class="trangdauthau" style="text-align: center; color: #d24400"><span>TRANG ĐẤU THẦU</span></h1>
         <h1 class="line" style="margin:0px;color:#d24400"><span>TH&#212;NG TIN VỀ KẾ HOẠCH MUA SẮM</span></h1>
-<form action="/form2" class="formMCG" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="jEkcbNpYnZRlnShFoiaj27ah8XUCYIKQ8kFVXtYpUyWsut5q-PLq2UpasaUWus2nqyQaYq0q6DFiFpuRjB7KmbI6Lgbeaq9wkqjQaNBaQHM1" /><div class="form-horizontal">
+<form action="/trangthongtin" class="formMCG" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="jEkcbNpYnZRlnShFoiaj27ah8XUCYIKQ8kFVXtYpUyWsut5q-PLq2UpasaUWus2nqyQaYq0q6DFiFpuRjB7KmbI6Lgbeaq9wkqjQaNBaQHM1" /><div class="form-horizontal">
     <input data-val="true" data-val-number="The field DTMCGThongTinNhaThauId must be a number." data-val-required="The DTMCGThongTinNhaThauId field is required." id="DTMCGThongTinNhaThauId" name="DTMCGThongTinNhaThauId" type="hidden" value="0" />
     <input data-val="true" data-val-required="Bắt buộc có" id="GuidTTNT" name="GuidTTNT" type="hidden" value="ec793f79f6464aa4b25af9e5e4700964" />
     <input id="SecretCode" name="SecretCode" type="hidden" value="dffc45" />
@@ -129,7 +125,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Phân loại (*): </label>
                 <div class="col-md-6">
-                    <select id="PhanLoaiDuAn" name="PhanLoaiDuAn" class="form-control" disabled="disabled">
+                    <select id="PhanLoaiDuAn" name="PhanLoai" class="form-control">
                             <option value="0">Chọn phân loại</option>
                         <option value="1" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
                         <option value="2" >Máy móc,linh kiện</option>
@@ -145,7 +141,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="Trần Thị Ho&#224;ng Xu&#226;n" readonly="readonly">
+                    <input class="form-control" type="text" value="Trần Thị Ho&#224;ng Xu&#226;n" readonly="readonly" name="NguoiLienHe">
                 </div>
             </div>
         </div>
@@ -155,7 +151,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="028.3952.5955                 " readonly="readonly">
+                    <input class="form-control" type="text" value="028.3952.5955                 " readonly="readonly" name="DT">
                 </div>
             </div>
         </div>
@@ -163,7 +159,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Email liên hệ  (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="xuan.tth@umc.edu.vn" readonly="readonly">
+                    <input class="form-control" type="text" value="xuan.tth@umc.edu.vn" readonly="readonly" name="Email">
                 </div>
             </div>
         </div>
@@ -190,7 +186,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="MaSoDoanhNghiep" style="text-align:left;">M&#227; số doanh nghiệp (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaSoDoanhNghiep" name="MaSoDoanhNghiep" type="text" value=""  name="MaST"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaSoDoanhNghiep" name="MaST" type="text" value=""  name="MaST"/>
                     <span class="field-validation-valid" data-valmsg-for="MaSoDoanhNghiep" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -210,7 +206,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="DienThoaiLienHe" style="text-align:left;">Điện thoại li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DienThoaiLienHe" name="DienThoaiLienHe" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DienThoaiLienHe" name="DT" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="DienThoaiLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -221,7 +217,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="EmailLienHe" name="EmailLienHe" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="EmailLienHe" name="Email" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -236,7 +232,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File scan b&#225;o gi&#225;, c&#243; k&#253; t&#234;n, đ&#243;ng dấu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileScanBaoGiaDongDau" name="FileScanBaoGiaDongDau" readonly="readonly" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileBaoGia" name="FileBaoGia" readonly="readonly" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
 
                 </div>
@@ -732,7 +728,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     </script>
 
 </body>
-</html>
+
 
 <script id="f5_cspm">(function(){var f5_cspm={f5_p:'MLJGNDBCEKDBACMFHHKKFMNEAFOCMKNLCDLHCBJKBFEBJDLPDLDEEHKHCGDEOADFKEKBHFOMCFFMFJBOHOHAKOOMALJEIGALHOEDPMDBGMCPPNKEOACJOHJPBCEPCHHF',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,40,(latency>>8));str=f5_cspm.set_byte(str,41,(latency&0xff));str=f5_cspm.set_byte(str,35,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr1331073961aaaaaaaaaaaaaaaa_cspm_='+encodeURIComponent(cookie_val)+';path=/';}
 return;}}

@@ -55,7 +55,7 @@ else
                 <p>
                     <strong class="text-danger">@product.ProductCategoryProducts.FirstOrDefault()?.Category.Title</strong>
                 </p>
-                <p>Giá: <strong>@product.Price</strong></p>
+                <!-- <p>Giá: <strong>@product.Price</strong></p> -->
                 
             </div>
             <div class="card-body">
@@ -63,7 +63,7 @@ else
                     Chi tiết
                 </a>
                 @* <a asp-action="AddToCart" asp-route-productid="@product.ProductID" class="btn btn-primary ml-4">Đặt hàng</a> *@
-                 <a asp-action="Index" asp-controller="/form2"  class="btn btn-primary ml-4">Đấu Thầu</a>
+                 <a asp-action="Index" asp-controller="/trangthongtin"  class="btn btn-primary ml-4">Đấu Thầu</a>
             </div>
         </div>
     }
