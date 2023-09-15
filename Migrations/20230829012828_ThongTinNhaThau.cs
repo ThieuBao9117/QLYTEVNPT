@@ -22,7 +22,7 @@ namespace AppMvc.Net.Migrations
                     PhanLoai = table.Column<int>(type: "int", nullable: true),
                     DT = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Nam = table.Column<int>(type: "int", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    EmailLH = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     NguoiLienHe = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     FilMau = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },

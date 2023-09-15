@@ -39,7 +39,7 @@ namespace AppMvc.Net.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("EmailLH")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
