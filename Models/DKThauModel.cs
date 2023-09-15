@@ -28,7 +28,7 @@ namespace App.Models.DKThaus
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
         [EmailAddress(ErrorMessage = "Phải là địa chỉ email")]
-        public string Email { get; set; }
+        public string EmailLH { get; set; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]

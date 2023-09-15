@@ -121,7 +121,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 TenDA = sm.TenDA,
                 Nam = sm.Nam,
                 NguoiLienHe = sm.NguoiLienHe,
-                EmailLH =sm.EmailLH
+                Email =sm.Email
             };
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.SaveChanges();
@@ -132,7 +132,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 TenNhaThau = qm.TenNhaThau,
                 FileBaoGia = qm.FileBaoGia,
                 HSKhac = qm.HSKhac,
-                Email = qm.Email,
+                EmailLH = qm.EmailLH,
                 DT = qm.DT,
                 NguoiLH = qm.NguoiLH,
                 IDNhaThau = thongtinnhathaus.ID

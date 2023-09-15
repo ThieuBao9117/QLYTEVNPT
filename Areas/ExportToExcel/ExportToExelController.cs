@@ -56,7 +56,7 @@ namespace App.Areas.ExportToExel.Controllers
                     worksheet.Cells["B" + rowIndex].Value = item.DT;
                     worksheet.Cells["C" + rowIndex].Value = item.MaST;
                     worksheet.Cells["D" + rowIndex].Value = item.NguoiLH;
-                    worksheet.Cells["E" + rowIndex].Value = item.Email;
+                    worksheet.Cells["E" + rowIndex].Value = item.EmailLH;
                     rowIndex++;
                 }
 

@@ -19,7 +19,7 @@ namespace AppMvc.Net.Migrations
                     MaST = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NguoiLH = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     DT = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    EmailLH = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     FileBaoGia = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     BangBaoGia = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     HSKhac = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),

@@ -39,7 +39,7 @@ namespace App.Models.ThongTinNhaThaus
         [Column(TypeName = "nvarchar")]
         [StringLength(150)]
         [EmailAddress(ErrorMessage = "Phải là địa chỉ email")]
-        public string EmailLH { get; set; }
+        public string Email { get; set; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(150)]
