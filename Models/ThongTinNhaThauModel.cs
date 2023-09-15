@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Collections.Generic;
 namespace App.Models.ThongTinNhaThaus
 {
     public class ThongTinNhaThau
@@ -48,5 +48,7 @@ namespace App.Models.ThongTinNhaThaus
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string FilMau { get; set; }
+
+        // public List<App.Models.DKThaus.DKThau> dsach { get; set; }
     }
 }

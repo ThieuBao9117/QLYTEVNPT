@@ -34,7 +34,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         {   
             //var ThongTinNhaThau = _context.ThongTinNhaThaus;
             var DKThau = _context.DKThaus;
-            Console.Write(DKThau);
+            //if(DKThau == null || DKThau.ToList().Count == 0)
             return View(DKThau);
             
         }
@@ -47,17 +47,23 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 return NotFound();
             }
 
-
-
-
             var DKThau = await _context.DKThaus
                 .FirstOrDefaultAsync(m => m.ID == ID);
             if (DKThau == null)
             {
                 return NotFound();
             }
-
-            return View(DKThau);
+            var ThongTinNhaThau = _context.ThongTinNhaThaus;
+            var DKThaus = _context.DKThaus;
+            var model = await ThongTinNhaThau.FirstOrDefaultAsync(m => m.ID == ID);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            var dsach_thau = await DKThaus.Where(m => m.IDNhaThau == ID).ToListAsync();
+            ViewBag.dsach_thau = dsach_thau;
+            Console.WriteLine(dsach_thau.Count);
+            return View(model);
         }
         //xóa 1 nhà thầu
          [HttpGet("dsNhaThau/delete/{ID}")]
@@ -97,6 +103,8 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 TenDA = sm.TenDA,
                 Nam = sm.Nam
             };
+            _context.ThongTinNhaThaus.Add(thongtinnhathaus);
+            _context.SaveChanges();
 
             DKThauModel dkthaus = new DKThauModel 
             {
@@ -106,6 +114,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 HSKhac = qm.HSKhac,
                 Email = qm.Email,
                 DT = qm.DT,
+                IDNhaThau = thongtinnhathaus.ID
             };
              if (file != null && file.Length > 0)
             {
@@ -116,8 +125,6 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                     file.CopyTo(stream);
                 }
              }
-
-            _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.DKThaus.Add(dkthaus);
             _context.SaveChanges();
             TempData["ConfirmationMessage"] = "Thông Tin Đã Được Gửi Về";
