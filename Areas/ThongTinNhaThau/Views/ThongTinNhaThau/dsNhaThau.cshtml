@@ -52,15 +52,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Ten)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.TenNhaThau)
             </td>
@@ -78,11 +69,15 @@
             </td>
             
             <td>
+                <a href="dsNhaThau/detail/@item.ID" class="btn btn-primary" >Xem zzz </a> | 
                 <a asp-action="Details1" class="btn btn-primary"asp-route-id="@item.ID">Xem</a> |
-                <a asp-action="Delete1" class="btn btn-primary"asp-route-id="@item.ID">Xóa</a>   
+                <a asp-action="Delete1" class="btn btn-primary"asp-route-id="@item.ID">Xóa</a>  
+                
             </td>
            
         </tr>
 
 }
+
+
  <a asp-action="ExportToExcel" class="btn btn-primary">Xuất ra Excel</a>

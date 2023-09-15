@@ -34,6 +34,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         {   
             //var ThongTinNhaThau = _context.ThongTinNhaThaus;
             var DKThau = _context.DKThaus;
+            Console.Write(DKThau);
             return View(DKThau);
             
         }
