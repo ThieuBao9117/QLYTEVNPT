@@ -1,6 +1,7 @@
 @using App.Menu
 @inject AdminSidebarService _AdminSidebarService
 @model App.Models.DKThaus.DKThau
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Xóa liên hệ";
@@ -45,8 +46,9 @@
         </dd> *@
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
+    <form asp-action="Delete1">
+        @* <form action="/trangthongtin" class="formMCG" enctype="multipart/form-data" method="post"> *@
+        <input type="hidden" asp-for="@Model.ID" />
         <input type="submit" value="Xóa" class="btn btn-danger" /> |
         <a asp-action="dsNhaThau">Danh sách nhà thầu</a>
     </form>

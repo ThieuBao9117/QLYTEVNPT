@@ -62,6 +62,10 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             }
             var dsach_thau = await DKThaus.Where(m => m.IDNhaThau == ID).ToListAsync();
             ViewBag.dsach_thau = dsach_thau;
+
+            // var dataNguoiDKDuAn = await TableNguoiDkyDuAn.Where(m => m.IDNhaThau == ID).ToListAsync();
+            // ViewBag.dataNguoiDKDuAn = dataNguoiDKDuAn;
+
             Console.WriteLine(dsach_thau.Count);
             return View(model);
         }
@@ -80,9 +84,23 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             {
                 return NotFound();
             }
+            
 
             return View(DKThau);
         }
+
+        [HttpPost("dsNhaThau/delete/{ID}"), ActionName("Delete1")]
+        public async Task<IActionResult> DeleteConfirmed(int ID)
+        {
+            Console.WriteLine("delete test ====");
+            var DKThaus = await _context.DKThaus.FindAsync(ID);
+            _context.DKThaus.Remove(DKThaus);
+            await _context.SaveChangesAsync();
+            // return RedirectToAction("/dsNhaThau");
+            return RedirectToAction(nameof(dsNhaThau));
+        }
+
+
         [HttpPost("/trangthongtin/")]
         [AllowAnonymous]
         public ActionResult trangthongtin(ThongTinNhaThauModel sm, DKThauModel qm, IFormFile file)
@@ -114,6 +132,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 HSKhac = qm.HSKhac,
                 Email = qm.Email,
                 DT = qm.DT,
+                NguoiLH = qm.NguoiLH,
                 IDNhaThau = thongtinnhathaus.ID
             };
              if (file != null && file.Length > 0)
