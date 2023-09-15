@@ -119,7 +119,9 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             {
                 Ten = sm.Ten,
                 TenDA = sm.TenDA,
-                Nam = sm.Nam
+                Nam = sm.Nam,
+                NguoiLienHe = sm.NguoiLienHe,
+                EmailLH =sm.EmailLH
             };
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.SaveChanges();

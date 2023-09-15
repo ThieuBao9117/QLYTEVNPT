@@ -3,7 +3,7 @@
 @model App.Models.ThongTinNhaThaus.ThongTinNhaThau
 
 @{
-    ViewData["Title"] = "Thông tin nhà thầu";
+    ViewData["Title"] = "Chi Tiết Dự Án";
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -13,21 +13,96 @@
     
 } *@
 
+@* @foreach (var item in @ViewBag.dsach_thau) {
+    @* <a>
+        Tên nhà thầu: @item.TenNhaThau
+    </a> *@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                 @Html.DisplayNameFor(model => model.Ten) 
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th> *@
+             <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Tên Dự Án Đăng Ký
+            </th>  <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+                Năm
+            </th> 
+            <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Người Liên Hệ Khi Làm Việc
+            </th> 
+             <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Email
+            </th> 
+            @* <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) 
+                Email 
+            </th>  *@
+            
+            
+           @* <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th> 
+            <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
 @foreach (var item in @ViewBag.dsach_thau) {
     @* <a>
         Tên nhà thầu: @item.TenNhaThau
     </a> *@
 }
+        <tr>
+            <td>
+                 @Model.Ten 
+            </td>
+            <td>
+                @Model.Nam
+            </td>
+            <td>
+                @Model.NguoiLienHe
+            </td>
+            <td>
+                @Model.Email
+            </td>
+           @*  <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td> *@
+            
+            @* <td>
+                <a href="dsNhaThau/detail/@item.ID" class="btn btn-primary" >Xem  </a> | 
+                <a href="dsNhaThau/delete/@item.ID" class="btn btn-primary" >Xóa  </a> 
+               
+                
+            </td> *@
+           
+        </tr>
 
 
 <div>
-    <hr />
-    @* @Html.DisplayFor(model => model) *@
-    Tên: @Model.Ten <br/>
-    Ảnh: @Model.Anh <br/>
-    Ngày: @Model.Ngay <br/>
+    @* <hr />
+    @* @Html.DisplayFor(model => model) 
+    Tên Dự Án ĐK: @Model.Ten <br/>
+    @* Ảnh: @Model.Anh <br/> 
+    Năm: @Model.Nam <br/>
+    Người Liên Hệ: @Model.NguoiLienHe <br/>
     @Model.MoTa <br/>
-    @Model.TenDA <br/>
+    @Model.TenDA <br/> *@
+    
+
     <dl class="row">
         @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Ten)
@@ -61,9 +136,9 @@
         </dd> *@
     </dl>
 </div>
-<div>
+@* <div>
     <a asp-action="dsNhaThau">Danh sách nhà thầu</a>
-</div>
+</div> *@
 
 
 @{
