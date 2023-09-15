@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Đấu Thầu";
     Layout =  "/Views/Shared/_Layout.cshtml";
+    
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -26,6 +27,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
 })();
 
 </script>
+
 </APM_DO_NOT_TOUCH>
 
 <script type="text/javascript" src="/TSPD/082d638fd6ab200068afd070d0c9498d3735077bd154b5d710f1da71d0c0218eaa4a750574ff5251?type=17"></script>
@@ -107,7 +109,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Tên dự toán mua sắm(*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="Cung cấp mỹ phẩm nội tr&#250; năm 2023" name="Ten">
+                    <input class="form-control" type="text" value="" name="Ten">
                 </div>
             </div>
         </div>
@@ -125,7 +127,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Phân loại (*): </label>
                 <div class="col-md-6">
-                    <select id="PhanLoaiDuAn" name="PhanLoai" class="form-control">
+                    <select id="PhanLoai" name="PhanLoai" class="form-control">
                             <option value="0">Chọn phân loại</option>
                         <option value="1" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
                         <option value="2" >Máy móc,linh kiện</option>
@@ -141,7 +143,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="Trần Thị Ho&#224;ng Xu&#226;n" readonly="readonly" name="NguoiLienHe">
+                    <input class="form-control" type="text" value=""  name="NguoiLH">
                 </div>
             </div>
         </div>
@@ -151,7 +153,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="028.3952.5955                 " readonly="readonly" name="DT">
+                    <input class="form-control" type="text" value=" "  name="DT">
                 </div>
             </div>
         </div>
@@ -159,7 +161,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Email liên hệ  (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="xuan.tth@umc.edu.vn" readonly="readonly" name="Email">
+                    <input class="form-control" type="text" value=""  name="Email">
                 </div>
             </div>
         </div>
@@ -186,7 +188,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="MaSoDoanhNghiep" style="text-align:left;">M&#227; số doanh nghiệp (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaSoDoanhNghiep" name="MaST" type="text" value=""  name="MaST"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value=""  name="MaST"/>
                     <span class="field-validation-valid" data-valmsg-for="MaSoDoanhNghiep" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -195,10 +197,10 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <label class="control-label col-md-6" for="NguoiLienHe" style="text-align:left;">Người li&#234;n hệ (*): </label>
+                <label class="control-label col-md-6" for="NguoiLH" style="text-align:left;">Người li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLienHe" name="NguoiLienHe" type="text" value="" />
-                    <span class="field-validation-valid" data-valmsg-for="NguoiLienHe" data-valmsg-replace="true"></span>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLH" name="NguoiLH" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="NguoiLH" data-valmsg-replace="true"></span>
                 </div>
             </div>
         </div>
@@ -206,7 +208,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="DienThoaiLienHe" style="text-align:left;">Điện thoại li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DienThoaiLienHe" name="DT" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DT" name="DT" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="DienThoaiLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -217,7 +219,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="EmailLienHe" name="Email" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="Email" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -271,7 +273,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileZipDinhKem" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
                 <div class="col-md-6">
-                    <input class="form-control" id="FileZipDinhKem" name="FileZipDinhKem" type="text" value="" />
+                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="FileZipDinhKem" data-valmsg-replace="true"></span>
 
                 </div>
@@ -448,6 +450,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     <script src="/Scripts/jquery.validate.js"></script>
 
     <script type="text/javascript">
+        var urlUpload = "/api/FileUpload/upload"
         var saveUrl = '/DTCGNT/CreateCGNT';
 
         const excel_file = document.getElementById('fileUploadXLS');
@@ -512,13 +515,14 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             $("#fileUploadPdf").on("change", function () {
                 var files = $(this).get(0).files;
                 var formData = new FormData();
+                var urlUpload = "/api/FileUpload/upload"  //;"@Url.Action("UploadPhotoApi")";
                 //var files = document.getElementById('fileInput');
                 //Iterating through each files selected in fileInput
                 for (i = 0; i < files.length; i++) {
 
                     var sfilename = files[i].name;
                     let srandomid = Math.random().toString(36).substring(7);
-
+                    formData.append('file',files[i])
                     formData.append(sfilename, files[i]);
                     formData.append('guidTTNT', $('#GuidTTNT').val());
                 }
@@ -532,13 +536,14 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             $("#fileUploadXLS").on("change", function () {
                 var files = $(this).get(0).files;
                 var formData = new FormData();
+                var urlUpload = "/api/FileUpload/upload"//"@Url.Action("UploadPhotoApi")";
                 //var files = document.getElementById('fileInput');
                 //Iterating through each files selected in fileInput
                 for (i = 0; i < files.length; i++) {
 
                     var sfilename = files[i].name;
                     let srandomid = Math.random().toString(36).substring(7);
-
+                    formData.append('file',files[i])
                     formData.append(sfilename, files[i]);
                     formData.append('guidTTNT', $('#GuidTTNT').val());
                 }
@@ -553,13 +558,14 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             $("#fileUploadZip").on("change", function () {
                 var files = $(this).get(0).files;
                 var formData = new FormData();
+                var urlUpload = "/api/FileUpload/upload"//"@Url.Action("UploadPhotoApi")";
                 //var files = document.getElementById('fileInput');
                 //Iterating through each files selected in fileInput
                 for (i = 0; i < files.length; i++) {
 
                     var sfilename = files[i].name;
                     let srandomid = Math.random().toString(36).substring(7);
-
+                    formData.append('file',files[i])
                     formData.append(sfilename, files[i]);
                     formData.append('guidTTNT', $('#GuidTTNT').val());
                 }
@@ -573,7 +579,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             function uploadFilePDF(formData) {
 
                 $.ajax({
-                    url: "/DTCGNT/UploadFiles",
+                    url: urlUpload,
                     method: "POST",
                     data: formData,
                     processData: false,
@@ -597,7 +603,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             function uploadFileXLS(formData) {
 
                 $.ajax({
-                    url: "/DTCGNT/UploadFiles",
+                    url: urlUpload,
                     method: "POST",
                     data: formData,
                     processData: false,
@@ -621,7 +627,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             function uploadFileZip(formData) {
 
                 $.ajax({
-                    url: "/DTCGNT/UploadFiles",
+                    url: urlUpload,
                     method: "POST",
                     data: formData,
                     processData: false,
@@ -633,7 +639,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
                         for (var i = 0; i < data.length; i++) {
                             str += "<img src='" + data[i] + "' height='100' width='100'>"
                         }
-
+                        
                         $(".file-upload-container").append(str);
                     },
                     error: function (data) {
@@ -645,7 +651,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             $("#btnupload").click(function () {
                 formdata.append('uploadername', $('#txtuploader').val());
                 $.ajax({
-                    url: '/DTCGNT/UploadFiles',
+                    url: urlUpload,
                     type: "POST",
                     contentType: false, // Not to set any content header
                     processData: false, // Not to process data

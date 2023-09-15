@@ -1,0 +1,88 @@
+@using App.Menu
+@inject AdminSidebarService _AdminSidebarService
+
+@* @model IEnumerable<App.Models.ThongTinNhaThaus.ThongTinNhaThau> *@
+@model IEnumerable<App.Models.DKThaus.DKThau>
+
+@{
+    ViewData["Title"] = "Danh sách nhà thầu";
+    Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                 @Html.DisplayNameFor(model => model.Ten) 
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th> *@
+             <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Tên Nhà Thầu
+            </th>  <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+                Số điện thoại
+            </th> 
+            <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Mã Số Thuế
+            </th> 
+             <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Người Liên Hệ
+            </th> 
+            <th>
+                @* @Html.DisplayNameFor(model => model.TenNhaThau) *@
+               Email
+            </th> 
+            
+            
+           @* <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th> 
+            <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNhaThau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaST)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.NguoiLH)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            
+            <td>
+                <a asp-action="Details1" class="btn btn-primary"asp-route-id="@item.ID">Xem</a> |
+                <a asp-action="Delete1" class="btn btn-primary"asp-route-id="@item.ID">Xóa</a>   
+            </td>
+           
+        </tr>
+
+}
+ <a asp-action="ExportToExcel" class="btn btn-primary">Xuất ra Excel</a>

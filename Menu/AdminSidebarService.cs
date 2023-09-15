@@ -141,6 +141,15 @@ namespace App.Menu {
                         },                                   
                     },
                 });
+             Items.Add(new SidebarItem() { 
+                    Type = SidebarItemType.NavItem,
+                    Controller = "dsNhaThau",
+                    Action = "Index",
+                    Title = "Quản lý nhà thầu",
+                    AwesomeIcon = "far fa-address-card"
+                 
+                
+                });
 
 
         }

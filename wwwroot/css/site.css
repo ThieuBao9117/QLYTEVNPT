@@ -90,6 +90,7 @@ body {
   border-color: #0779c9;
 }
 
+
 .app-footer {
   background: #080A10;
   color: white;
@@ -136,6 +137,8 @@ body {
   background-color: rgb(242, 245, 250);
   text-align: center;
 } */
+
+
 .app-navbar::before {
   content: "";
   background: url(https://storage-vnportal.vnpt.vn/sme-g1/themes/ttytvungtau/panelstylesheet/top-twocolumn-footer/images/body.jpg) repeat-x scroll 0 0;
@@ -147,7 +150,9 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  
 }
+
 
 
 .TopBar {
@@ -155,7 +160,7 @@ body {
     border-radius: 0 0 10px 10px;
     margin: 0 auto 2px;
     text-align: justify;
-    width: 1150px;
+    width: 100%;
 }
 .MultiFunctionControl marquee {
   table-layout: fixed;
@@ -242,7 +247,7 @@ body {
   position: relative;
   border-left: 1px solid #B6DBEB;
 }
-.SingleSearch .SearchBox .Text {
+/* .SingleSearch .SearchBox .Text {
   background: #fff none repeat scroll 0 0;
   border: 1px solid #999;
   border-radius: 10px 0 0 10px;
@@ -253,13 +258,13 @@ body {
   margin: 0;
   padding: 0 6px;
   width: 145px;
-}
-.SingleSearch .SearchBox {
+} */
+/* .SingleSearch .SearchBox {
   display: flex;
   align-items: center;
-}
+} */
 
-.SingleSearch .SearchBox {
+/* .SingleSearch .SearchBox {
   position: relative;
   left: 730px;
   float: right;
@@ -272,7 +277,7 @@ body {
   height: 23px;
   transition: none 0s ease 0s;
   width: 23px;
-}
+} */
 
 a {
   color: #424242;
@@ -284,3 +289,11 @@ a {
   font: bold 15px/35px "Segoe UI",Tahoma,Verdana;
   text-decoration: none;
 }
+
+
+
+
+
+
+
+
