@@ -355,7 +355,7 @@ namespace AppMvc.Net.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("DT")
+                    b.Property<string>("DThoai")
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
@@ -382,7 +382,7 @@ namespace AppMvc.Net.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<int?>("PhanLoai")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Ten")
                         .HasMaxLength(500)

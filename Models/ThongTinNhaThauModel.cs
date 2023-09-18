@@ -28,11 +28,13 @@ namespace App.Models.ThongTinNhaThaus
         [StringLength(550)]
         public string TenDA { get; set; }
 
-        public int? PhanLoai { get; set; }
+        [Column(TypeName = "nvarchar")]
+        [StringLength(150)]
+        public string PhanLoai { get; set; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(150)]
-        public string DT { get; set; }
+        public string DThoai { get; set; }
 
         public int? Nam { get; set; }
 
@@ -48,6 +50,11 @@ namespace App.Models.ThongTinNhaThaus
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string FilMau { get; set; }
+
+        public static implicit operator List<object>(ThongTinNhaThau v)
+        {
+            throw new NotImplementedException();
+        }
 
         // public List<App.Models.DKThaus.DKThau> dsach { get; set; }
     }

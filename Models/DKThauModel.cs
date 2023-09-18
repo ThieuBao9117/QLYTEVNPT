@@ -45,5 +45,6 @@ namespace App.Models.DKThaus
         public int? IDNhaThau { get; set; }
 
         public DateTime? Ngay { get; set; }
+        
     }
 }

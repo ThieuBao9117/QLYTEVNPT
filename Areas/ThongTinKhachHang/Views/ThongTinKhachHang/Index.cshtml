@@ -1,6 +1,11 @@
+@using App.Menu
+@inject AdminSidebarService _AdminSidebarService
+@model App.Models.ThongTinKhachHangs.ThongTinKhachHang
+
+
 @{
     ViewData["Title"] = "Đấu Thầu";
-    Layout =  "/Views/Shared/_Layout.cshtml";
+    Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
     
 }
 <!DOCTYPE html>
@@ -94,7 +99,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     </div>
         <h1 class="trangdauthau" style="text-align: center; color: #d24400"><span>TRANG ĐẤU THẦU</span></h1>
         <h1 class="line" style="margin:0px;color:#d24400"><span>TH&#212;NG TIN VỀ KẾ HOẠCH MUA SẮM</span></h1>
-<form action="/trangthongtin" class="formMCG" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="jEkcbNpYnZRlnShFoiaj27ah8XUCYIKQ8kFVXtYpUyWsut5q-PLq2UpasaUWus2nqyQaYq0q6DFiFpuRjB7KmbI6Lgbeaq9wkqjQaNBaQHM1" /><div class="form-horizontal">
+<form action="Index" class="formMCG" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="jEkcbNpYnZRlnShFoiaj27ah8XUCYIKQ8kFVXtYpUyWsut5q-PLq2UpasaUWus2nqyQaYq0q6DFiFpuRjB7KmbI6Lgbeaq9wkqjQaNBaQHM1" /><div class="form-horizontal">
     <input data-val="true" data-val-number="The field DTMCGThongTinNhaThauId must be a number." data-val-required="The DTMCGThongTinNhaThauId field is required." id="DTMCGThongTinNhaThauId" name="DTMCGThongTinNhaThauId" type="hidden" value="0" />
     <input data-val="true" data-val-required="Bắt buộc có" id="GuidTTNT" name="GuidTTNT" type="hidden" value="ec793f79f6464aa4b25af9e5e4700964" />
     <input id="SecretCode" name="SecretCode" type="hidden" value="dffc45" />
@@ -104,13 +109,12 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     <input data-val="true" data-val-date="The field Updated must be a date." data-val-required="The Updated field is required." id="Updated" name="Updated" type="hidden" value="24/08/2023 14:37:08" />
     <input data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status" type="hidden" value="2" />
     <br />
-    @ViewBag.Product
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Tên dự toán mua sắm(*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="" name="Ten">
+                    <input class="form-control" type="text" value=" @Model.Ten" name="Ten">
                 </div>
             </div>
         </div>
@@ -118,7 +122,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Năm(*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="2023" name="Nam">
+                    <input class="form-control" type="text" value="@Model.Nam" name="Nam">
                 </div>
             </div>
         </div>
@@ -144,7 +148,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value=""  name="NguoiLienHe">
+                    <input class="form-control" type="text" value="@Model.NguoiLienHe"  name="NguoiLienHe">
                 </div>
             </div>
         </div>
@@ -154,7 +158,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value=" "  name="DT">
+                    <input class="form-control" type="text" value="@Model.DThoai"  name="DT">
                 </div>
             </div>
         </div>
@@ -180,7 +184,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="TenCongTy" style="text-align:left;">T&#234;n nh&#224; thầu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="" />
+                    <input class="form-control" data-val="@Model.Ten " data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="@Model.Ten"readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="TenCongTy" data-valmsg-replace="true" ></span>
                 </div>
             </div>
@@ -189,7 +193,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" for="MaSoDoanhNghiep" style="text-align:left;">M&#227; số doanh nghiệp (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value=""  name="MaST"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value="@Model.MaST"  name="MaST"/>
                     <span class="field-validation-valid" data-valmsg-for="MaSoDoanhNghiep" data-valmsg-replace="true"></span>
                 </div>
             </div>
