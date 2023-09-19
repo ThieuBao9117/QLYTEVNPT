@@ -38,66 +38,76 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             
         }
      // thông tin nhà thầu detail
-        // [HttpGet("dsNhaThau/detail/{ID}")]
-        // public async Task<IActionResult> Details1(int? ID)
-        // {
-        //     if (ID == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var DKThau = await _context.DKThaus
-        //         .FirstOrDefaultAsync(m => m.ID == ID);
-        //     if (DKThau == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     var ThongTinNhaThau = _context.ThongTinNhaThaus;
-        //     var DKThaus = _context.DKThaus;
-        //     var model = await ThongTinNhaThau.FirstOrDefaultAsync(m => m.ID == ID);
-        //     if (model == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     var dsach_thau = await DKThaus.Where(m => m.IDNhaThau == ID).ToListAsync();
-        //     ViewBag.dsach_thau = dsach_thau;
-
-        //     // var dataNguoiDKDuAn = await TableNguoiDkyDuAn.Where(m => m.IDNhaThau == ID).ToListAsync();
-        //     // ViewBag.dataNguoiDKDuAn = dataNguoiDKDuAn;
-
-        //     Console.WriteLine(dsach_thau.Count);
-        //     return View(model);
-        // }
         [HttpGet("dsNhaThau/detail/{ID}")]
-    public async Task<IActionResult> Details1(int? ID)
-    {
+        public async Task<IActionResult> Details1(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+
+            var DKThau = await _context.DKThaus
+                .FirstOrDefaultAsync(m => m.ID == ID);
+            if (DKThau == null)
+            {
+                return NotFound();
+            }
+            // var ThongTinNhaThau = _context.ThongTinNhaThaus;
+            var DKThaus = _context.DKThaus;
+            var ThongTinNhaThauData = await _context.ThongTinNhaThaus.FirstOrDefaultAsync(m => m.ID == ID);
+            if (ThongTinNhaThauData == null)
+            {
+                return NotFound();
+            } 
+            var dsach_thau = await DKThaus.Where(m => m.IDNhaThau == ID).ToListAsync();
+            if(dsach_thau.Count > 0) {
+                ViewBag.dsach_thau = dsach_thau[0];
+                ViewBag.ThongTinNhaThauData = ThongTinNhaThauData;
+            }
+            // var dataNguoiDKDuAn = await TableNguoiDkyDuAn.Where(m => m.IDNhaThau == ID).ToListAsync();
+            // ViewBag.dataNguoiDKDuAn = dataNguoiDKDuAn;
+            // Console.WriteLine(ViewBag.dsach_thau.TenNhaThau);
+            Console.WriteLine(ViewBag.ThongTinNhaThauData.ID);
+            // Console.WriteLine(ViewBag.ThongTinNhaThauData.TenDA.ToString());
+            Console.WriteLine(ViewBag.ThongTinNhaThauData.Ten);
+            // Console.WriteLine(ViewBag.ThongTinNhaThauData.MoTa);
+            return View();
+        }
+      
+    //     [HttpGet("dsNhaThau/detail/{ID}")]
+    // public async Task<IActionResult> Details1(int? ID)
+    // {
         
-        if (ID == null)
-        {
-            return NotFound();
-        }
+    //     if (ID == null)
+    //     {
+    //         return NotFound();
+    //     }
 
-        var thongTinNhaThau = await _context.ThongTinNhaThaus
-            .FirstOrDefaultAsync(ttnh => ttnh.ID == ID);
+    //     var thongTinNhaThau = await _context.ThongTinNhaThaus
+    //         .FirstOrDefaultAsync(ttnh => ttnh.ID == ID);
 
-        if (thongTinNhaThau == null)
-        {
-            return NotFound();
-        }
+    //     if (thongTinNhaThau == null)
+    //     {
+    //         return NotFound();
+    //     }
 
-        var dsach_thau = await _context.DKThaus
-            .Where(dkt => dkt.IDNhaThau == ID)
-            .ToListAsync();
+    //     var dsach_thau = await _context.DKThaus
+    //         .Where(dkt => dkt.IDNhaThau == ID)
+    //         .ToListAsync();
 
-        var viewModel = new ThongTinKhachHangModel
-        {
+    //     var viewModel = new ThongTinKhachHangModel
+    //     {
             
-            DKThaus = dsach_thau
-        };
+    //         DKThaus = dsach_thau
+    //     };
 
-        return View(viewModel);
-    }
+    //     ViewBag.thongTinNhaThau = thongTinNhaThau;
+    //     ViewBag.dsach_thau = dsach_thau;
 
+    //     return View();
+    // }
+
+        
         //xóa 1 nhà thầu
          [HttpGet("dsNhaThau/delete/{ID}")]
         public async Task<IActionResult> Delete1(int? ID)
@@ -188,8 +198,24 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (HttpContext.Request.Query.TryGetValue("productid", out var productIdString) && int.TryParse(productIdString, out var productId))
+            {
+                var product = _context.Products
+                .Where (p => p.ProductID == productId)
+                .FirstOrDefault ();
+                if (product == null)
+                    return NotFound ("Không có sản phẩm");
+
+                ViewBag.Product = product;
+            }
+            else
+            {
+                return NotFound();
+            }
+
             var ThongTinNhaThau = _context.ThongTinNhaThaus;
             var DKThau = _context.DKThaus;
+
             return View(ThongTinNhaThau);
         }
        

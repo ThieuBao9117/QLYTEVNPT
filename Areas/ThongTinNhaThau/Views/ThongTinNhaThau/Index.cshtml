@@ -104,13 +104,13 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
     <input data-val="true" data-val-date="The field Updated must be a date." data-val-required="The Updated field is required." id="Updated" name="Updated" type="hidden" value="24/08/2023 14:37:08" />
     <input data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status" type="hidden" value="2" />
     <br />
-    @ViewBag.Product
+    
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Tên dự toán mua sắm(*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="" name="Ten">
+                    <input class="form-control" type="text" value="@(ViewBag.Product.Title ?? String.Empty)" name="Ten" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Năm(*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="2023" name="Nam">
+                    <input class="form-control" type="text" value="2023" name="Nam" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Phân loại (*): </label>
                 <div class="col-md-6">
-                    <select id="PhanLoai" name="PhanLoai" class="form-control">
+                    <select id="PhanLoai" name="PhanLoai" class="form-control" readonly="readonly">
                             <option value="0">Chọn phân loại</option>
                         <option value="1" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
                         <option value="2" >Máy móc,linh kiện</option>
@@ -144,7 +144,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value=""  name="NguoiLienHe">
+                    <input class="form-control" type="text" value="Nguyễn Văn A"  name="NguoiLienHe" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -154,7 +154,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value=" "  name="DT">
+                    <input class="form-control" type="text" value="0908881212 "  name="DT" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@ function IS(z){var s=+new Date,_;!document[I(90,203,207,191,204,211,173,191,198,
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Email liên hệ  (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value=""  name="Email">
+                    <input class="form-control" type="text" value="Vananh@gmai.com"  name="Email" readonly="readonly">
                 </div>
             </div>
         </div>

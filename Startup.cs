@@ -246,6 +246,10 @@ namespace App
                 name: "thongtinnhathau",
                 pattern: "ThongTinNhaThau/{action=Index}"
                 );
+                endpoints.MapControllerRoute(
+                name: "trangthongtin",
+                pattern: "ThongTinNhaThau/{action=Index}"
+                );
 
                 endpoints.MapRazorPages();
             });

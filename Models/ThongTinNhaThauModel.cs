@@ -50,6 +50,7 @@ namespace App.Models.ThongTinNhaThaus
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string FilMau { get; set; }
+        
 
         public static implicit operator List<object>(ThongTinNhaThau v)
         {

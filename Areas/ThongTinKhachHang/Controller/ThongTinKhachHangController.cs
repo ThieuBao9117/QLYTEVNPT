@@ -16,6 +16,7 @@ using App.Models.DKThaus;
 using Microsoft.AspNetCore.Http;
 using App.Models.ThongTinKhachHangs;
 
+
 namespace App.Areas.ThongTinKhachHangController.Controllers
 {
     public class ThongTinKhachHangController : Controller
@@ -23,22 +24,17 @@ namespace App.Areas.ThongTinKhachHangController.Controllers
         private readonly AppDbContext _context; // DbContext của bạn
         
         public ThongTinKhachHangController(AppDbContext context)
-        
         {
             _context = context;
         }
-        
-
-        public IActionResult Index()
-        {   
-                
-            var model = new ThongTinKhachHangModel
+       public ActionResult MyView()
+        {
+            var viewModel = new ThongTinKhachHang
             {
-                ThongTinNhaThau = _context.ThongTinNhaThaus.ToList(),
-                DKThaus = _context.DKThaus.ToList()
+                DKThauModel = _context.DKThaus.FirstOrDefault(), // Lấy một bản ghi từ bảng DKThaus (hoặc thay thế bằng cách khác nếu cần)
+                ThongTinNhaThauModel = _context.ThongTinNhaThaus.FirstOrDefault() // Lấy một bản ghi từ bảng ThongTinNhaThaus (hoặc thay thế bằng cách khác nếu cần)
             };
-
-            return View(model);
+            return View(viewModel);
         }
     }
 }
