@@ -61,7 +61,9 @@ namespace App
             services.AddDbContext<AppDbContext>(options => {
                 string connectString = Configuration.GetConnectionString("AppMvcConnectionString");
                 options.UseSqlServer(connectString);
-            });           
+            });  
+            // mới thêm
+               
 
             services.AddControllersWithViews();
             services.AddRazorPages();

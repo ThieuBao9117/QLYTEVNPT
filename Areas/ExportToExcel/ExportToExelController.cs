@@ -28,6 +28,9 @@ namespace App.Areas.ExportToExel.Controllers
             _context = context;
         }
         
+        [HttpGet("/exporttoexcel/")]
+        [AllowAnonymous]
+
         public IActionResult ExportToExcel()
         {   
             var data = _context.DKThaus.ToList(); // Thay thế bằng cách lấy dữ liệu từ Model thích hợp
@@ -40,9 +43,10 @@ namespace App.Areas.ExportToExel.Controllers
                 worksheet.Cells["C1"].Value = "Mã Số Thuế";
                 worksheet.Cells["D1"].Value = "Người Liên Hệ";
                 worksheet.Cells["E1"].Value = "Email";
+                worksheet.Cells["F1"].Value = "Ngày";
 
                 // Đặt tiêu đề cho các cột
-                using (var range = worksheet.Cells["A1:E1"])
+                using (var range = worksheet.Cells["A1:F1"])
                 {
                     range.Style.Font.Bold = true;
                     range.Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -57,6 +61,7 @@ namespace App.Areas.ExportToExel.Controllers
                     worksheet.Cells["C" + rowIndex].Value = item.MaST;
                     worksheet.Cells["D" + rowIndex].Value = item.NguoiLH;
                     worksheet.Cells["E" + rowIndex].Value = item.EmailLH;
+                    worksheet.Cells["F" + rowIndex].Value = item.Ngay;
                     rowIndex++;
                 }
 

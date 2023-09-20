@@ -62,7 +62,12 @@ namespace App.Models
             modelBuilder.Entity<ProductModel>( entity => {
                 entity.HasIndex( p => p.Slug)
                       .IsUnique();
-            });            
+            });
+            modelBuilder.Entity<ProductModel>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(18, 2)");  
+            
+                        
         }
 
         public DbSet<Contact> Contacts { get; set; }

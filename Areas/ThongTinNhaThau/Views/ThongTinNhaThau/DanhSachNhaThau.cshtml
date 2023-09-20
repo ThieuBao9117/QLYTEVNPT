@@ -10,7 +10,12 @@
     ViewData["Title"] = "Danh sách nhà thầu";
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+@if (TempData["ConfirmationMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["ConfirmationMessage"]
+        </div>
+    }
 <table class="table">
     <thead>
         <tr>
@@ -80,7 +85,3 @@
         </tr>
 
 }
-
-
- <a href="/exporttoexcel/" class="btn btn-primary" >Xuất file excel </a>  
-

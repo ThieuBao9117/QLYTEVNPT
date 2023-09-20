@@ -19,6 +19,7 @@ public class FileUploadController : ControllerBase
         // For example, save the file to a specific location or perform additional processing.
 
         // Example: Save the file to the wwwroot/uploads directory
+        
         var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT");
         Directory.CreateDirectory(uploadPath);
 

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Areas.ThongTinNhaThau.Controllers
 {
@@ -22,11 +23,36 @@ namespace App.Areas.ThongTinNhaThau.Controllers
     public class ThongTinNhaThauController : Controller
     {
         private readonly AppDbContext _context;
+        
+        private readonly UserManager<AppUser> _userManager;
 
-        public ThongTinNhaThauController(AppDbContext context)
+        public ThongTinNhaThauController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            
+           Initialize();
+            
         }
+        private async void Initialize()
+        {
+             if (User != null)
+                {
+                    var user = await _userManager.GetUserAsync(User);
+
+                    if (user != null)
+                    {
+                        var userId = user.Id;
+                        var userName =user.UserName;
+                        
+                        ViewBag.UserName = user.UserName;
+                        Console.WriteLine(userId);
+                        Console.WriteLine(userName);
+                    }
+                }
+            
+        }
+
         [HttpGet("/dsNhaThau/")]
         [AllowAnonymous]
         public IActionResult dsNhaThau()
@@ -174,6 +200,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 EmailLH = qm.EmailLH,
                 DT = qm.DT,
                 NguoiLH = qm.NguoiLH,
+                Ngay =qm.Ngay,
                 IDNhaThau = thongtinnhathaus.ID
             };
              if (file != null && file.Length > 0)
@@ -198,6 +225,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+           
             if (HttpContext.Request.Query.TryGetValue("productid", out var productIdString) && int.TryParse(productIdString, out var productId))
             {
                 var product = _context.Products

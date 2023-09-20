@@ -1,3 +1,8 @@
+@using Microsoft.AspNetCore.Identity
+@using App.Models
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Chi tiết nhà thầu";
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
@@ -123,7 +128,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@ThongTinNhaThauData.NguoiLienHe"  name="NguoiLienHe" readonly="readonly">
+                    <input class="form-control" type="text" value="@UserManager.GetUserName(User)"  name="NguoiLienHe" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -133,7 +138,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@ThongTinNhaThauData.DThoai"  name="DT" readonly="readonly">
+                    <input class="form-control" type="text" value="@ThongTinNhaThauData.DThoai"  name="DThoai" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -159,7 +164,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="TenCongTy" style="text-align:left;">T&#234;n nh&#224; thầu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="@DanhSachThau.TenNhaThau" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="@DanhSachThau.TenNhaThau" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="TenCongTy" data-valmsg-replace="true" ></span>
                 </div>
             </div>
@@ -168,7 +173,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="MaSoDoanhNghiep" style="text-align:left;">M&#227; số doanh nghiệp (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value="@DanhSachThau.MaST"  name="MaST"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value="@DanhSachThau.MaST"  name="MaST" readonly="readonly"/>
                     <span class="field-validation-valid" data-valmsg-for="MaSoDoanhNghiep" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -179,7 +184,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="NguoiLH" style="text-align:left;">Người li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLH" name="NguoiLH" type="text" value="@DanhSachThau.NguoiLH" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLH" name="NguoiLH" type="text" value="@DanhSachThau.NguoiLH" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="NguoiLH" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -188,18 +193,27 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="DienThoaiLienHe" style="text-align:left;">Điện thoại li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DT" name="DT" type="text" value="@DanhSachThau.DT" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="DT" name="DT" type="text" value="@DanhSachThau.DT" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="DienThoaiLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
         </div>
+          <div class="col-md-6" style="padding-right: 10px;">
+        <div class="form-group">
+            <label class="control-label col-md-6" for="NgayCapNhat" style="text-align:left;">Ngày (*): </label>
+            <div class="col-md-6">
+                <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Ngay" name="Ngay" type="date" value="@DanhSachThau.Ngay"  />
+                <span class="field-validation-valid" data-valmsg-for="NgayCapNhat" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+    </div> 
     </div>
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="@DanhSachThau.EmailLH" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="@DanhSachThau.EmailLH" readonly="readonly"/>
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -214,7 +228,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File scan b&#225;o gi&#225;, c&#243; k&#253; t&#234;n, đ&#243;ng dấu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileBaoGia" name="FileBaoGia" readonly="readonly" type="text" value="@DanhSachThau.FileBaoGia" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileBaoGia" name="FileBaoGia" readonly="readonly" type="text" value="@DanhSachThau.FileBaoGia" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
 
                 </div>
@@ -222,7 +236,7 @@
         </div>
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadPdf" accept='application/pdf' class="form-control" value="" />
+                <input type="file" id="fileUploadPdf" accept='application/pdf' class="form-control" value="" readonly="readonly" />
             </div>
         </div>
     </div>
@@ -231,16 +245,16 @@
             <div class="form-group">
                 <label class="control-label col-md-6" for="BangBaoGia" style="text-align:left;">Bảng ch&#224;o gi&#225; của nh&#224; thầu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="BangBaoGia" name="BangBaoGia" readonly="readonly" type="text" value="@DanhSachThau.BangBaoGia" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="BangBaoGia" name="BangBaoGia" readonly="readonly" type="text" value="@DanhSachThau.BangBaoGia" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="FileBaoGia" data-valmsg-replace="true"></span>
 
                 </div>
             </div>
         </div>
         <div class="col-md-2" style="padding-right:10px;">
-            <div class="form-group">
+            @* <div class="form-group">
                 <button type="button" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
-            </div>
+            </div> *@
         </div>
         <div class="col-md-4" style="padding-right:10px;">
             <div class="form-group">
@@ -251,17 +265,17 @@
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <label class="control-label col-md-6" for="FileZipDinhKem" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
+                <label class="control-label col-md-6" for="FileZipDinhKem" readonly="readonly" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
                 <div class="col-md-6">
-                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="@DanhSachThau.HSKhac" />
-                    <span class="field-validation-valid" data-valmsg-for="FileZipDinhKem" data-valmsg-replace="true"></span>
+                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="@DanhSachThau.HSKhac" readonly="readonly" />
+                    <span class="field-validation-valid" data-valmsg-for="FileZipDinhKem" data-valmsg-replace="true" readonly="readonly"></span>
 
                 </div>
             </div>
         </div>
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control"  />
+                <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control" readonly="readonly"  />
             </div>
         </div>
         <span>
@@ -290,7 +304,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-4 col-md-8">
-            <input type="submit" value="Lưu thông tin" class="btn btn-primary" id="CGNTSaveData" />
+            <a href="/sort/" class="btn btn-primary" >Cập Nhật  </a>   
         </div>
     </div>
 </div>
