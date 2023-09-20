@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 [ApiController]
 public class FileUploadController : ControllerBase
 {
+    
     [HttpPost("upload")]
+    
     public async Task<IActionResult> Upload(IFormFile file)
     {
         if (file == null || file.Length == 0)
@@ -20,7 +22,7 @@ public class FileUploadController : ControllerBase
 
         // Example: Save the file to the wwwroot/uploads directory
         
-        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT");
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", "PDFs","ZIPs");
         Directory.CreateDirectory(uploadPath);
 
         var filePath = Path.Combine(uploadPath, file.FileName);
@@ -32,4 +34,5 @@ public class FileUploadController : ControllerBase
 
         return Ok(uploadPath + "/" + file.FileName);
     }
+    
 }

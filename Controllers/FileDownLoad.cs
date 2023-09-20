@@ -1,29 +1,49 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using App.Models;
+using Microsoft.EntityFrameworkCore;
 
 public class FileDownloadController : Controller
 {
+    
+    private readonly AppDbContext _context;
+    public FileDownloadController(AppDbContext context)
+        {
+            
+            _context = context;
+        }
     [HttpGet("DownloadFile")]
-    public IActionResult DownloadFile(string folderName, string fileName)
+    public IActionResult DownloadFile(string fileName)
     {
-        // Đường dẫn tới thư mục chứa file cần tải xuống
-        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", folderName);
+        // Kiểm tra xem tên file có tồn tại trong cơ sở dữ liệu không
+        var file = _context.DKThaus.FirstOrDefault(f => f.FileBaoGia == fileName);
+        
 
-        // Đường dẫn đến tệp cần tải xuống
-        string filePath = Path.Combine(folderPath, fileName);
 
-        if (System.IO.File.Exists(filePath))
+        if (file != null)
         {
-            // Đọc dữ liệu từ file
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            // Đường dẫn tới thư mục chứa file cần tải xuống
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", fileName);
 
-            // Trả về file như là một phản hồi (Response)
-            return File(fileBytes, "application/octet-stream", fileName);
+            if (System.IO.File.Exists(filePath))
+            {
+                // Đọc dữ liệu từ file
+                byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+                // Trả về file như là một phản hồi (Response)
+                return File(fileBytes, "application/octet-stream", fileName);
+            }
         }
-        else
-        {
-            // Nếu file không tồn tại, bạn có thể xử lý lỗi tại đây
-            return NotFound();
-        }
+
+        // Nếu file không tồn tại hoặc có lỗi khác, bạn có thể xử lý lỗi hoặc hiển thị thông báo lỗi
+        return NotFound(); // Hoặc return BadRequest("File không tồn tại");
     }
+    
+    
 }

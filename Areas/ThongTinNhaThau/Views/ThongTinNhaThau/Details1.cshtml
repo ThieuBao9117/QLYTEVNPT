@@ -128,7 +128,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@UserManager.GetUserName(User)"  name="NguoiLienHe" readonly="readonly">
+                    <input class="form-control" type="text" value="nguyễn văn a@UserManager.GetUserName(User)"  name="NguoiLienHe" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@ThongTinNhaThauData.DThoai"  name="DThoai" readonly="readonly">
+                    <input class="form-control" type="text" value="08123124123@ThongTinNhaThauData.DThoai"  name="DThoai" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -234,11 +234,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="padding-right:10px;">
+        @{
+            var fileUrl = Url.Action("DownloadFile", "FileDownLoad", new { fileName = DanhSachThau.FileBaoGia, bangBaoGia = DanhSachThau.BangBaoGia, fileUploadZip = DanhSachThau.HSKhac });
+        }
+        <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
+        @* <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <input type="file" id="fileUploadPdf" accept='application/pdf' class="form-control" value="" readonly="readonly" />
             </div>
-        </div>
+        </div> *@
     </div>
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
@@ -247,7 +251,6 @@
                 <div class="col-md-6">
                     <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="BangBaoGia" name="BangBaoGia" readonly="readonly" type="text" value="@DanhSachThau.BangBaoGia" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="FileBaoGia" data-valmsg-replace="true"></span>
-
                 </div>
             </div>
         </div>
@@ -255,14 +258,15 @@
             @* <div class="form-group">
                 <button type="button" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
             </div> *@
+            <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
         </div>
-        <div class="col-md-4" style="padding-right:10px;">
+        @* <div class="col-md-4" style="padding-right:10px;">
             <div class="form-group">
                 <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
             </div>
-        </div>
+        </div> *@
     </div>
-    <div class="col-md-12 col-xs-12">
+    @* <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileZipDinhKem" readonly="readonly" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
@@ -272,13 +276,14 @@
 
                 </div>
             </div>
-        </div>
-        <div class="col-md-6" style="padding-right:10px;">
-            <div class="form-group">
+        </div> *@
+        @* <div class="col-md-6" style="padding-right:10px;"> *@
+            @* <div class="form-group">
                 <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control" readonly="readonly"  />
-            </div>
-        </div>
-        <span>
+            </div> *@
+            @* <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
+        </div> *@
+        @* <span>
             @if (DanhSachThau != null)
             {
                 <div>
@@ -287,7 +292,29 @@
             }
           
            
-        </span>
+        </span> *@
+    @* </div> *@
+    <div class="col-md-12 col-xs-12">
+        <div class="col-md-6" style="padding-right:10px;">
+            <div class="form-group">
+                <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip):(*): </label>
+                <div class="col-md-6">
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="HSKhac" name="HSKhac" readonly="readonly" type="text" value="@DanhSachThau.HSKhac" />
+                    <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
+
+                </div>
+            </div>
+        </div>
+       <div class="col-md-6" style="padding-right:10px;">
+        @* <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
+            <div class="form-group">
+                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf">
+            </div>
+             
+        </form> *@
+        <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
+
+    </div>
     </div>
     <div class="col-md-12 col-xs-12">
         <table class="table" id="FilesList" border="1">

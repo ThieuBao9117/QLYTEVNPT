@@ -39,7 +39,7 @@ namespace App.Models.DKThaus
         public string BangBaoGia { get; set; }
 
         [Column(TypeName = "nvarchar")]
-        [StringLength(50)]
+        [StringLength(250)]
         public string HSKhac { get; set; }
 
         public int? IDNhaThau { get; set; }

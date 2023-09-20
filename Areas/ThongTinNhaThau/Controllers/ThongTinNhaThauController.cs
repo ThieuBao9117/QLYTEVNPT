@@ -153,7 +153,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
 
             return View(DKThau);
         }
-
+        
         [HttpPost("dsNhaThau/delete/{ID}"), ActionName("Delete1")]
         public async Task<IActionResult> DeleteConfirmed(int ID)
         {
@@ -201,7 +201,8 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 DT = qm.DT,
                 NguoiLH = qm.NguoiLH,
                 Ngay =qm.Ngay,
-                IDNhaThau = thongtinnhathaus.ID
+                IDNhaThau = thongtinnhathaus.ID,
+                BangBaoGia = qm.BangBaoGia
             };
              if (file != null && file.Length > 0)
             {
@@ -247,13 +248,20 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             return View(ThongTinNhaThau);
         }
        
-
+        [HttpGet("/sort/")]
+        [AllowAnonymous]
+        public IActionResult DanhSachNhaThau()
+            {
+                var DKThauList = _context.DKThaus.ToList();
+                // Lấy danh sách nhà thầu từ cơ sở dữ liệu và sắp xếp theo thời gian giảm dần
+                var danhSachNhaThau = _context.DKThaus.OrderByDescending(item => item.Ngay).ToList();
+                
+                return View(danhSachNhaThau);
+            }
+       
         [TempData]
         public string StatusMessage {set; get;}  
         
-        
-        
-
         [HttpGet]
         public IActionResult Create()
         {

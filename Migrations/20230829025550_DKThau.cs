@@ -22,7 +22,7 @@ namespace AppMvc.Net.Migrations
                     EmailLH = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     FileBaoGia = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     BangBaoGia = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    HSKhac = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    HSKhac = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     IDNhaThau = table.Column<int>(type: "int", nullable: true),
                     Ngay = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

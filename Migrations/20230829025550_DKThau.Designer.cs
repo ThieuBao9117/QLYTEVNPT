@@ -249,7 +249,7 @@ namespace AppMvc.Net.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("HSKhac")
-                        .HasMaxLength(50)
+                        .HasMaxLength(250)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("IDNhaThau")

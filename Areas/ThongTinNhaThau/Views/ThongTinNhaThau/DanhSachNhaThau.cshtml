@@ -76,12 +76,14 @@
                 @Html.DisplayFor(modeItem =>item.Ngay)
             </td>
             <td>
-                <a href="dsNhaThau/detail/@item.ID"   class="btn btn-primary" >Xem  </a> | 
-                <a href="dsNhaThau/delete/@item.ID" class="btn btn-primary" >Xóa  </a>   
+                @* <a href="dsNhaThau/detail/@item.ID"   class="btn btn-primary" >Xem  </a> | 
+                <a href="dsNhaThau/delete/@item.ID" class="btn btn-primary" >Xóa  </a>    *@
                 @* <a asp-action="Index" asp-controller="/trangthongtin" asp-route-productid="@product.ProductID"  class="btn btn-primary ml-4">Đấu Thầu</a> *@
               
             </td>
            
         </tr>
+        
 
 }
+<a href="/exporttoexcel/" class="btn btn-primary" >Xuất file excel </a>
