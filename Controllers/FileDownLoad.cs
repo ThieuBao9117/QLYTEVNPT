@@ -21,15 +21,8 @@ public class FileDownloadController : Controller
     [HttpGet("DownloadFile")]
     public IActionResult DownloadFile(string fileName)
     {
-        // Kiểm tra xem tên file có tồn tại trong cơ sở dữ liệu không
-        var file = _context.DKThaus.FirstOrDefault(f => f.FileBaoGia == fileName);
-        
 
-
-        if (file != null)
-        {
-            // Đường dẫn tới thư mục chứa file cần tải xuống
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", fileName);
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", fileName);
 
             if (System.IO.File.Exists(filePath))
             {
@@ -39,7 +32,6 @@ public class FileDownloadController : Controller
                 // Trả về file như là một phản hồi (Response)
                 return File(fileBytes, "application/octet-stream", fileName);
             }
-        }
 
         // Nếu file không tồn tại hoặc có lỗi khác, bạn có thể xử lý lỗi hoặc hiển thị thông báo lỗi
         return NotFound(); // Hoặc return BadRequest("File không tồn tại");

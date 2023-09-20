@@ -177,7 +177,8 @@ namespace AppMvc.Areas.Blog.Controllers
             };
 
             var categories = await _context.Categories.ToListAsync();
-            ViewData["categories"] = new MultiSelectList(categories, "Id", "Title");          
+            ViewData["categories"] = new MultiSelectList(categories, "Id", "Title");
+           
 
             return View(postEdit);
         }

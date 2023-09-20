@@ -168,7 +168,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
 
         [HttpPost("/trangthongtin/")]
         [AllowAnonymous]
-        public ActionResult trangthongtin(ThongTinNhaThauModel sm, DKThauModel qm, IFormFile file)
+        public ActionResult trangthongtin(ThongTinNhaThauModel sm, DKThauModel _DKThau, IFormFile file)
         {
             if (!ModelState.IsValid)
             {
@@ -193,26 +193,18 @@ namespace App.Areas.ThongTinNhaThau.Controllers
 
             DKThauModel dkthaus = new DKThauModel 
             {
-                MaST = qm.MaST,
-                TenNhaThau = qm.TenNhaThau,
-                FileBaoGia = qm.FileBaoGia,
-                HSKhac = qm.HSKhac,
-                EmailLH = qm.EmailLH,
-                DT = qm.DT,
-                NguoiLH = qm.NguoiLH,
-                Ngay =qm.Ngay,
+                MaST = _DKThau.MaST,
+                TenNhaThau = _DKThau.TenNhaThau,
+                EmailLH = _DKThau.EmailLH,
+                DT = _DKThau.DT,
+                NguoiLH = _DKThau.NguoiLH,
+                Ngay =_DKThau.Ngay,
                 IDNhaThau = thongtinnhathaus.ID,
-                BangBaoGia = qm.BangBaoGia
+
+                BangBaoGia = _DKThau.BangBaoGia,
+                FileBaoGia = _DKThau.FileBaoGia,
+                HSKhac = _DKThau.HSKhac
             };
-             if (file != null && file.Length > 0)
-            {
-        // Lưu trữ tệp trên máy chủ hoặc hệ thống lưu trữ
-                var filePath = System.IO.Path.Combine("/Uploads/Products", file.FileName);
-                using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-             }
             _context.DKThaus.Add(dkthaus);
             _context.SaveChanges();
             TempData["ConfirmationMessage"] = "Thông Tin Đã Được Gửi Về";
@@ -234,7 +226,10 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 .FirstOrDefault ();
                 if (product == null)
                     return NotFound ("Không có sản phẩm");
-
+                Console.WriteLine(product.AuthorId);
+                App.Models.AppUser User = _context.Users.FirstOrDefault(p=> p.Id == product.AuthorId);
+                if( User == null) return NotFound("Khong ton tai user");
+                ViewBag.User = User;
                 ViewBag.Product = product;
             }
             else

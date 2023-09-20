@@ -9,6 +9,7 @@
     var products = ViewBag.products as IQueryable<App.Models.Product.ProductModel>;
     var DanhSachThau = ViewBag.dsach_thau as App.Models.DKThaus.DKThau;
     var ThongTinNhaThauData = ViewBag.ThongTinNhaThauData as App.Models.ThongTinNhaThaus.ThongTinNhaThau;
+    
 }
 
 
@@ -128,7 +129,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="nguyễn văn a@UserManager.GetUserName(User)"  name="NguoiLienHe" readonly="readonly">
+                    <input class="form-control" type="text" value="@ThongTinNhaThauData.NguoiLienHe"  name="NguoiLienHe" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -222,7 +223,7 @@
             &nbsp;
         </div>
     </div>
-
+    @*tai pdf*@
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
@@ -235,14 +236,12 @@
             </div>
         </div>
         @{
-            var fileUrl = Url.Action("DownloadFile", "FileDownLoad", new { fileName = DanhSachThau.FileBaoGia, bangBaoGia = DanhSachThau.BangBaoGia, fileUploadZip = DanhSachThau.HSKhac });
+            var pdf_fileUrl = Url.Action("DownloadFile", "FileDownLoad", new { fileName = DanhSachThau.FileBaoGia });
+            var xls_fileUrl = Url.Action("DownloadFile", "FileDownLoad", new { fileName = DanhSachThau.BangBaoGia });
+            var zip_fileUrl = Url.Action("DownloadFile", "FileDownLoad", new { fileName = DanhSachThau.HSKhac });
         }
-        <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
-        @* <div class="col-md-6" style="padding-right:10px;">
-            <div class="form-group">
-                <input type="file" id="fileUploadPdf" accept='application/pdf' class="form-control" value="" readonly="readonly" />
-            </div>
-        </div> *@
+        <a href="@pdf_fileUrl" class="btn btn-primary">Tải Xuống File</a>
+       
     </div>
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
@@ -255,16 +254,8 @@
             </div>
         </div>
         <div class="col-md-2" style="padding-right:10px;">
-            @* <div class="form-group">
-                <button type="button" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
-            </div> *@
-            <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
+            <a href="@xls_fileUrl" class="btn btn-primary">Tải Xuống File</a>
         </div>
-        @* <div class="col-md-4" style="padding-right:10px;">
-            <div class="form-group">
-                <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
-            </div>
-        </div> *@
     </div>
     @* <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
@@ -305,15 +296,8 @@
                 </div>
             </div>
         </div>
-       <div class="col-md-6" style="padding-right:10px;">
-        @* <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
-            <div class="form-group">
-                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf">
-            </div>
-             
-        </form> *@
-        <a href="@fileUrl" class="btn btn-primary">Tải Xuống File</a>
-
+       <div class="col-md-6" style="padding-right:10px;">  
+        <a href="@zip_fileUrl" class="btn btn-primary">Tải Xuống File</a>
     </div>
     </div>
     <div class="col-md-12 col-xs-12">
@@ -646,7 +630,6 @@
                         for (var i = 0; i < data.length; i++) {
                             str += "<img src='" + data[i] + "' height='100' width='100'>"
                         }
-
                         $(".file-upload-container").append(str);
                     },
                     error: function (data) {
