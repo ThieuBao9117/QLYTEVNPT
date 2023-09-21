@@ -28,7 +28,6 @@ namespace App.Models.Product {
 
             [Display(Name = "Xuất bản")]
             public bool Published {set; get;}
-
             
             // [Required]
             [Display(Name = "Người đăng")]
@@ -52,5 +51,10 @@ namespace App.Models.Product {
             public List<ProductCategoryProduct>  ProductCategoryProducts { get; set; }
 
             public List<ProductPhoto> Photos { get; set; }
+             
+            public string NguoiLH_Ten {get;set;}
+            public string NguoiLH_Email{get;set;}
+            public string NguoiLH_DT {get; set;}
+            
     }
 }

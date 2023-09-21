@@ -1,10 +1,12 @@
 @model AppMvc.Areas.Product.Models.CreateProductModel
 @using App.Menu
 @inject AdminSidebarService _AdminSidebarService
+
 @{
     ViewData["Title"] = "Thêm sản phẩm";
     var list = ViewData["categories"] as MultiSelectList;
-    Layout =  "/Views/Shared/_LayoutAdmin.cshtml";    
+    Layout =  "/Views/Shared/_LayoutAdmin.cshtml"; 
+    var _User = ViewBag.User as App.Models.AppUser;   
 }
 
 <hr />
@@ -47,9 +49,24 @@
                 <textarea asp-for="Content" class="form-control"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="NguoiLH_Ten" class="control-label"></label>
+                <textarea asp-for="NguoiLH_Ten" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_Ten" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NguoiLH_Email" class="control-label"></label>
+                <textarea asp-for="NguoiLH_Email" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_Email" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="NguoiLH_DT" class="control-label"></label>
+                <textarea asp-for="NguoiLH_DT" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_DT" class="text-danger"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)
+                    <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Author)
                 </label>
             </div>
 

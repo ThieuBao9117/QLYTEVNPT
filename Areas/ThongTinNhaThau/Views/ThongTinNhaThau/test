@@ -1,13 +1,15 @@
 @using Microsoft.AspNetCore.Identity
 @using App.Models
-@inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Đấu Thầu";
     Layout =  "/Views/Shared/_Layout.cshtml";
+    var Product = ViewBag.product as App.Models.Product.ProductModel;
+    var _User = ViewBag.User as App.Models.AppUser;
+    
+
     
 }
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -28,6 +30,9 @@ $(function ()
     });  
 })  
 </script>
+
+
+</script>
 <script type="text/javascript" src="/TSPD/082d638fd6ab200068afd070d0c9498d3735077bd154b5d710f1da71d0c0218eaa4a750574ff5251?type=17"></script>
 
     <!-- Meta -->
@@ -45,7 +50,6 @@ $(function ()
     <link href="/Content/tn3/tn3.css" rel="stylesheet">
     <link href="/Content/styles-box.css" rel="stylesheet">
     <link href="/Content/custom.css" rel="stylesheet">
-    <link href="styles/jquery-ui.css" rel="stylesheet" />
 
 
     <!-- Theme CSS -->
@@ -54,11 +58,8 @@ $(function ()
         <script src="/Scripts/html5shiv.js"></script>
         <script src="/Scripts/respond.min.js"></script>
     <![endif]-->
-    <script src="scripts/jquery-1.11.3.min.js"></script>  
-    <script src="scripts/jquery-ui.js"></script>  
 
 </head>
-
 
 <body class="home-page boxed">
     <style>
@@ -106,7 +107,6 @@ $(function ()
     <input data-val="true" data-val-date="The field Updated must be a date." data-val-required="The Updated field is required." id="Updated" name="Updated" type="hidden" value="24/08/2023 14:37:08" />
     <input data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status" type="hidden" value="2" />
     <br />
-    
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
@@ -128,17 +128,20 @@ $(function ()
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <label class="control-label col-md-6" style="text-align:left;">Phân loại (*): </label>
+                <label class="control-label col-md-6" style="text-align:left;" >Phân loại (*): </label>
                 <div class="col-md-6">
-                    <select id="PhanLoai" name="PhanLoai" class="form-control" readonly="readonly">
-                            <option value="0">Chọn phân loại</option>
-                        <option value="1" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
-                        <option value="2" >Máy móc,linh kiện</option>
-                        <option value="3" >Vật tư</option>
-                        <option value="4" >Hóa chất</option>
-                        <option value="5" >Dịch vụ</option>
-                        <option value="6" >Thuốc</option>
-                    </select>
+                    @{
+                        var _list = ViewBag.Categories as SelectList;
+                    }
+                     @* <select asp-for="CategoryId" asp-items="@_list"></select>
+                            @* <option value="0">Chọn phân loại</option>
+                        <option value="1" readonly="readonly" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
+                        <option value="2" readonly="readonly" >Máy móc,linh kiện</option>
+                        <option value="3" readonly="readonly" >Vật tư</option>
+                        <option value="4" readonly="readonly" >Hóa chất</option>
+                        <option value="5" readonly="readonly">Dịch vụ</option>
+                        <option value="6" readonly="readonly" >Thuốc</option> 
+                    </select> *@
                 </div>
             </div>
         </div>
@@ -146,7 +149,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="nguyễn văn a"  name="NguoiLienHe" readonly="readonly">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_Ten)"  name="NguoiLH">
                 </div>
             </div>
         </div>
@@ -156,7 +159,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="0908881212 "  name="DT" readonly="readonly">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_DT)"  name="DT">
                 </div>
             </div>
         </div>
@@ -164,7 +167,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Email liên hệ  (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="Nguyenvan@gmail.com"  name="Email" readonly="readonly">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_Email)"  name="Email">
                 </div>
             </div>
         </div>
@@ -215,10 +218,9 @@ $(function ()
                     <span class="field-validation-valid" data-valmsg-for="DienThoaiLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-12 col-xs-12">
-    <div class="col-md-6" style="padding-right: 10px;">
+        </div> 
+        <div class="col-md-12 col-xs-12">
+        <div class="col-md-6" style="padding-right: 10px;">
         <div class="form-group">
             <label class="control-label col-md-6" for="NgayCapNhat" style="text-align:left;">Ngày (*): </label>
             <div class="col-md-6">
@@ -228,12 +230,13 @@ $(function ()
         </div>
     </div>  
     </div>
+    </div>
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="Email" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -242,52 +245,56 @@ $(function ()
             &nbsp;
         </div>
     </div>
-
+    @*Upload PDF*@
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File scan b&#225;o gi&#225;, c&#243; k&#253; t&#234;n, đ&#243;ng dấu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileBaoGia" name="FileBaoGia" readonly="readonly" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="BangBaoGia" name="BangBaoGia" readonly="readonly" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="padding-right:10px;">
+       <div class="col-md-6" style="padding-right:10px;">
+        <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
             <div class="form-group">
-                <input type="file" id="fileUploadPdf" accept='application/pdf' class="form-control" />
+                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf">
             </div>
-        </div>
+        </form>
     </div>
+    </div>
+    @*Upload XML*@
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <label class="control-label col-md-6" for="BangBaoGia" style="text-align:left;">Bảng ch&#224;o gi&#225; của nh&#224; thầu (*): </label>
+                <label class="control-label col-md-6" for="FileBaoGia" style="text-align:left;">Bảng ch&#224;o gi&#225; của nh&#224; thầu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="BangBaoGia" name="BangBaoGia" readonly="readonly" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="FileBaoGia" name="FileBaoGia" readonly="readonly" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="FileBaoGia" data-valmsg-replace="true"></span>
 
                 </div>
             </div>
         </div>
         <div class="col-md-2" style="padding-right:10px;">
-            @* <div class="form-group">
-                <button type="button" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
-            </div> *@
+            <div class="form-group">
+                <button type="" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
+            </div>
         </div>
         <div class="col-md-4" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control"  readonly="readonly"/>
+                <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
             </div>
         </div>
     </div>
+     @*Upload ZIP*@
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileZipDinhKem" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
                 <div class="col-md-6">
-                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value=""  />
+                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="FileZipDinhKem" data-valmsg-replace="true"></span>
 
                 </div>
@@ -295,10 +302,53 @@ $(function ()
         </div>
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control" readonly="readonly" />
+                <input type="file" id="fileUploadZip" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
+            </div>
+            @* <div class="form-group">
+                <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control" />
+            </div> *@
+        </div>
+    </div>
+     @* <div class="col-md-12 col-xs-12">
+        <div class="col-md-6" style="padding-right:10px;">
+            <div class="form-group">
+                <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip):(*): </label>
+                <div class="col-md-6">
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="HSKhac" name="HSKhac" readonly="readonly" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
+
+                </div>
+            </div>
+        </div>
+       <div class="col-md-6" style="padding-right:10px;">
+        <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
+            <div class="form-group">
+                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf">
+            </div>
+        </form>
+    </div>
+    </div> *@
+    @* <div class="col-md-12 col-xs-12">
+    <div class="col-md-6" style="padding-right:10px;">
+        <div class="form-group">
+            <label class="control-label col-md-6" for="FileScanBaoGiaDongDau" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip):(*): </label>
+            <div class="col-md-6">
+                <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="HSKhac" name="HSKhac" readonly="readonly" type="text" value="" />
+                <span class="field-validation-valid" data-valmsg-for="FileScanBaoGiaDongDau" data-valmsg-replace="true"></span>
             </div>
         </div>
     </div>
+    <div class="col-md-6" style="padding-right:10px;">
+        <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
+            <div class="form-group">
+                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf" onchange="updateHSKhac(this)">
+            </div>
+        </form>
+    </div>
+</div> *@
+
+
+    
     <div class="col-md-12 col-xs-12">
         <table class="table" id="FilesList" border="1">
 
@@ -456,9 +506,41 @@ $(function ()
             }(document, 'script', 'facebook-jssdk'));
         });
     </script>
+<script>
+    document.getElementById("fileUploadPdf").addEventListener("change", function () { //fileUpload
+        var fileInput = document.getElementById("fileUploadPdf");
+        var fileNameDisplay = document.getElementById("BangBaoGia");
+
+        if (fileInput.files.length > 0) {
+            fileNameDisplay.value = fileInput.files[0].name;
+        } else {
+            fileNameDisplay.value = "";
+        }
+    });
+    document.getElementById("fileUploadXLS").addEventListener("change", function () { //fileUpload
+        var fileInput = document.getElementById("fileUploadXLS");
+        var fileNameDisplay = document.getElementById("FileBaoGia");
+
+        if (fileInput.files.length > 0) {
+            fileNameDisplay.value = fileInput.files[0].name;
+        } else {
+            fileNameDisplay.value = "";
+        }
+    });
+    document.getElementById("fileUploadZip").addEventListener("change", function () { //fileUpload
+        var fileInput = document.getElementById("fileUploadZip");
+        var fileNameDisplay = document.getElementById("HSKhac");
+
+        if (fileInput.files.length > 0) {
+            fileNameDisplay.value = fileInput.files[0].name;
+        } else {
+            fileNameDisplay.value = "";
+        }
+    });
+</script>
 
 
-
+    
     
     <script type="text/javascript" src="/Content/Xlsx/xlsx.full.min.js"></script>
     <script src="/Scripts/jquery.validate.js"></script>
@@ -624,13 +706,6 @@ $(function ()
                     contentType: false,
                     success: function (data) {
                         var str = "";
-                        $('#FileBaoGia').val(data);
-                        console.log('FileBaoGia: ' + $('#FileBaoGia').val());
-                        for (var i = 0; i < data.length; i++) {
-                            str += "<img src='" + data[i] + "' height='100' width='100'>"
-                        }
-
-                        $(".file-upload-container").append(str);
                     },
                     error: function (data) {
                         alert("Upload Failed!");
@@ -648,13 +723,8 @@ $(function ()
                     contentType: false,
                     success: function (data) {
                         var str = "";
-                        $('#FileZipDinhKem').val(data);
-                        console.log('FileZipDinhKem: ' + $('#FileZipDinhKem').val());
-                        for (var i = 0; i < data.length; i++) {
-                            str += "<img src='" + data[i] + "' height='100' width='100'>"
-                        }
+                        @* $('#HSKhac').val(data); *@
                         
-                        $(".file-upload-container").append(str);
                     },
                     error: function (data) {
                         alert("Upload Failed!");

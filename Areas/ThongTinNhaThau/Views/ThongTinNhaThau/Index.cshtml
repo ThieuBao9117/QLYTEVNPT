@@ -4,8 +4,11 @@
 @{
     ViewData["Title"] = "Đấu Thầu";
     Layout =  "/Views/Shared/_Layout.cshtml";
-    @* var Product = ViewBag.product as App.Models.Product.ProductModel; *@
+    var Product = ViewBag.product as App.Models.Product.ProductModel;
     var _User = ViewBag.User as App.Models.AppUser;
+    
+
+    
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -27,15 +30,7 @@ $(function ()
     });  
 })  
 </script>
-@* <script> //truyền input của hskhac dưới dạng pdf
-function updateHSKhac(input) {
-    // Lấy tên tệp từ input file
-    var fileName = input.files[0].name;
 
-    // Gán tên tệp vào thuộc tính HSKhac
-    document.getElementById("HSKhac").value = fileName;
-}
-</script> *@
 
 </script>
 <script type="text/javascript" src="/TSPD/082d638fd6ab200068afd070d0c9498d3735077bd154b5d710f1da71d0c0218eaa4a750574ff5251?type=17"></script>
@@ -135,15 +130,18 @@ function updateHSKhac(input) {
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;" >Phân loại (*): </label>
                 <div class="col-md-6">
-                    <select id="PhanLoai" name="PhanLoai" class="form-control" readonly="readonly">
-                            <option value="0">Chọn phân loại</option>
+                    @{
+                        var _list = ViewBag.Categories as SelectList;
+                    }
+                     @* <select asp-for="CategoryId" asp-items="@_list"></select>
+                            @* <option value="0">Chọn phân loại</option>
                         <option value="1" readonly="readonly" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
                         <option value="2" readonly="readonly" >Máy móc,linh kiện</option>
                         <option value="3" readonly="readonly" >Vật tư</option>
                         <option value="4" readonly="readonly" >Hóa chất</option>
                         <option value="5" readonly="readonly">Dịch vụ</option>
-                        <option value="6" readonly="readonly" >Thuốc</option>
-                    </select>
+                        <option value="6" readonly="readonly" >Thuốc</option> 
+                    </select> *@
                 </div>
             </div>
         </div>
@@ -151,7 +149,7 @@ function updateHSKhac(input) {
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@(_User.NormalizedUserName ?? String.Empty)"  name="NguoiLH">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_Ten)"  name="NguoiLienHe" >
                 </div>
             </div>
         </div>
@@ -161,7 +159,7 @@ function updateHSKhac(input) {
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@(_User.PhoneNumber ?? String.Empty)"  name="DT">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_DT)"   id="DThoai" name="DThoai" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -169,7 +167,7 @@ function updateHSKhac(input) {
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Email liên hệ  (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@(_User.Email ?? String.Empty)"  name="Email">
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_Email)"  name="Email" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -238,7 +236,7 @@ function updateHSKhac(input) {
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="Email" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="" />
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -281,7 +279,7 @@ function updateHSKhac(input) {
         </div>
         <div class="col-md-2" style="padding-right:10px;">
             <div class="form-group">
-                <button type="" class="btn btn-primary btnBieuMauTaiXuong"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</button>
+                <a href="/Uploads/DTCGNT/PDFs/ZIPs/1.BSC-GPCNTT-8_2.xlsx" class="btn btn-primary"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</a>
             </div>
         </div>
         <div class="col-md-4" style="padding-right:10px;">

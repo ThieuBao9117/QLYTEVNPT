@@ -16,6 +16,7 @@ using System.IO;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Microsoft.AspNetCore.Identity;
+using App.Models.Product;
 
 namespace App.Areas.ThongTinNhaThau.Controllers
 {
@@ -34,7 +35,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
            Initialize();
             
         }
-        private async void Initialize()
+              private async void Initialize()
         {
              if (User != null)
                 {
@@ -79,16 +80,20 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 return NotFound();
             }
             // var ThongTinNhaThau = _context.ThongTinNhaThaus;
+           
             var DKThaus = _context.DKThaus;
             var ThongTinNhaThauData = await _context.ThongTinNhaThaus.FirstOrDefaultAsync(m => m.ID == ID);
             if (ThongTinNhaThauData == null)
             {
                 return NotFound();
             } 
+            var product = _context.Products;
             var dsach_thau = await DKThaus.Where(m => m.IDNhaThau == ID).ToListAsync();
             if(dsach_thau.Count > 0) {
                 ViewBag.dsach_thau = dsach_thau[0];
                 ViewBag.ThongTinNhaThauData = ThongTinNhaThauData;
+                ViewBag.User = User;
+                
             }
             // var dataNguoiDKDuAn = await TableNguoiDkyDuAn.Where(m => m.IDNhaThau == ID).ToListAsync();
             // ViewBag.dataNguoiDKDuAn = dataNguoiDKDuAn;
@@ -150,6 +155,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 return NotFound();
             }
             
+            
 
             return View(DKThau);
         }
@@ -186,7 +192,8 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 TenDA = sm.TenDA,
                 Nam = sm.Nam,
                 NguoiLienHe = sm.NguoiLienHe,
-                Email =sm.Email
+                Email =sm.Email,
+                DThoai= sm.DThoai
             };
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.SaveChanges();
@@ -205,6 +212,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 FileBaoGia = _DKThau.FileBaoGia,
                 HSKhac = _DKThau.HSKhac
             };
+
             _context.DKThaus.Add(dkthaus);
             _context.SaveChanges();
             TempData["ConfirmationMessage"] = "Thông Tin Đã Được Gửi Về";
@@ -236,6 +244,14 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             {
                 return NotFound();
             }
+            var Categories = _context.CategoryProducts.Select( i=> new SelectListItem {
+                      Value=i.Id.ToString(),
+                      Text=i.Title 
+                    }).ToList();
+
+            Console.WriteLine(Categories.Count);
+            
+            ViewBag.Categories = Categories;
 
             var ThongTinNhaThau = _context.ThongTinNhaThaus;
             var DKThau = _context.DKThaus;

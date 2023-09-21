@@ -1,14 +1,16 @@
 @using Microsoft.AspNetCore.Identity
 @using App.Models
 
-@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager
+@* @inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager *@
 @{
     ViewData["Title"] = "Chi tiết nhà thầu";
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
-    var products = ViewBag.products as IQueryable<App.Models.Product.ProductModel>;
+    @* var products = ViewBag.products as IQueryable<App.Models.Product.ProductModel>; *@
     var DanhSachThau = ViewBag.dsach_thau as App.Models.DKThaus.DKThau;
     var ThongTinNhaThauData = ViewBag.ThongTinNhaThauData as App.Models.ThongTinNhaThaus.ThongTinNhaThau;
+    var _User = ViewBag.User as App.Models.AppUser;
+    var Product = ViewBag.product as App.Models.Product.ProductModel;
     
 }
 
@@ -139,7 +141,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Điện thoại liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="08123124123@ThongTinNhaThauData.DThoai"  name="DThoai" readonly="readonly">
+                    <input class="form-control" type="text" value="@ThongTinNhaThauData.DThoai"  name="DThoai" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -199,22 +201,20 @@
                 </div>
             </div>
         </div>
-          <div class="col-md-6" style="padding-right: 10px;">
-        <div class="form-group">
-            <label class="control-label col-md-6" for="NgayCapNhat" style="text-align:left;">Ngày (*): </label>
-            <div class="col-md-6">
-                <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Ngay" name="Ngay" type="date" value="@DanhSachThau.Ngay"  />
-                <span class="field-validation-valid" data-valmsg-for="NgayCapNhat" data-valmsg-replace="true"></span>
-            </div>
-        </div>
-    </div> 
+       <div class="col-md-6" style="padding-right:10px;">
+            <div class="form-group">
+                <label class="control-label col-md-6" style="text-align:left;">Ngày </label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" value="@DanhSachThau.Ngay"  name="Ngay" readonly="readonly">
+                </div>
+            </div> 
     </div>
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="@DanhSachThau.EmailLH" readonly="readonly"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="EmailLH" name="EmailLH" type="text" value="@DanhSachThau.EmailLH" readonly="readonly"/>
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
