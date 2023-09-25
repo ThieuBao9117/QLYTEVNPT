@@ -1,12 +1,15 @@
 @using Microsoft.AspNetCore.Identity
 @using App.Models
+@using  App.Models.Product
 @inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Đấu Thầu";
     Layout =  "/Views/Shared/_Layout.cshtml";
     var Product = ViewBag.product as App.Models.Product.ProductModel;
     var _User = ViewBag.User as App.Models.AppUser;
-    
+    List<CategoryProduct> categories = ViewBag.categories as List<CategoryProduct>;
+    IQueryable<ProductModel> otherProducts = ViewBag.otherProducts as IQueryable<ProductModel>;
+     @* CategoryProduct category = ViewBag.category as CategoryProduct;   *@
 
     
 }
@@ -89,7 +92,24 @@ $(function ()
             }
     </style>
  
-
+@* <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="https://ttytvungtau-soyte.baria-vungtau.gov.vn/">Home</a></li>
+    @if  (category != null)
+    {
+        var li = category.ListParents();
+        foreach (var l in li)
+        {
+            <li class="breadcrumb-item">
+                <a asp-action="Index" asp-route-categoryslug="@l.Slug">@l.Title</a>
+            </li>
+        }
+        <li class="breadcrumb-item">
+            <a asp-action="Index" asp-route-categoryslug="@category.Slug">@category.Title</a>
+        </li>
+    } 
+  </ol> *@  @* test*@
+</nav>
 <section class="events list" style="padding:15px;">
     <div class="col-md-12 col-xs-12">
         <div class="form-group">
@@ -128,28 +148,23 @@ $(function ()
     <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <label class="control-label col-md-6" style="text-align:left;" >Phân loại (*): </label>
+                <label class="control-label col-md-6" style="text-align:left;" >Phân loại (*): </label>    
                 <div class="col-md-6">
-                    @{
-                        var _list = ViewBag.Categories as SelectList;
-                    }
-                     @* <select asp-for="CategoryId" asp-items="@_list"></select>
-                            @* <option value="0">Chọn phân loại</option>
-                        <option value="1" readonly="readonly" selected=&quot;selected&quot;>Hàng hóa thông thường</option>
-                        <option value="2" readonly="readonly" >Máy móc,linh kiện</option>
-                        <option value="3" readonly="readonly" >Vật tư</option>
-                        <option value="4" readonly="readonly" >Hóa chất</option>
-                        <option value="5" readonly="readonly">Dịch vụ</option>
-                        <option value="6" readonly="readonly" >Thuốc</option> 
-                    </select> *@
-                </div>
+            <select id="PhanLoai" name="PhanLoai" class="form-control" readonly="readonly">
+                <option value="0">Chọn phân loại</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Value">@category.Text</option>
+                }
+            </select>
+        </div>
             </div>
         </div>
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
                 <label class="control-label col-md-6" style="text-align:left;">Người liên hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" value="@(Product.NguoiLH_Ten)"  name="NguoiLienHe" >
+                    <input class="form-control" type="text" value="@(Product.NguoiLH_Ten)"  name="NguoiLienHe"readonly="readonly">
                 </div>
             </div>
         </div>
@@ -185,7 +200,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" for="TenCongTy" style="text-align:left;">T&#234;n nh&#224; thầu (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="TenCongTy" name="TenNhaThau" type="text" value="" required />
                     <span class="field-validation-valid" data-valmsg-for="TenCongTy" data-valmsg-replace="true" ></span>
                 </div>
             </div>
@@ -194,7 +209,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" for="MaSoDoanhNghiep" style="text-align:left;">M&#227; số doanh nghiệp (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value=""  name="MaST"/>
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="MaST" name="MaST" type="text" value=""  name="MaST" required/>
                     <span class="field-validation-valid" data-valmsg-for="MaSoDoanhNghiep" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -205,7 +220,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" for="NguoiLH" style="text-align:left;">Người li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLH" name="NguoiLH" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="NguoiLH" name="NguoiLH" type="text" value=""required />
                     <span class="field-validation-valid" data-valmsg-for="NguoiLH" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -224,7 +239,7 @@ $(function ()
         <div class="form-group">
             <label class="control-label col-md-6" for="NgayCapNhat" style="text-align:left;">Ngày (*): </label>
             <div class="col-md-6">
-                <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="txtDatePicker" name="Ngay" type="date" value=""  />
+                <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="txtDatePicker" name="Ngay" type="date" value="" required />
                 <span class="field-validation-valid" data-valmsg-for="NgayCapNhat" data-valmsg-replace="true"></span>
             </div>
         </div>
@@ -236,7 +251,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" for="EmailLienHe" style="text-align:left;">Email li&#234;n hệ (*): </label>
                 <div class="col-md-6">
-                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value="" />
+                    <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="Email" name="EmailLH" type="text" value=""required />
                     <span class="field-validation-valid" data-valmsg-for="EmailLienHe" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -260,7 +275,8 @@ $(function ()
        <div class="col-md-6" style="padding-right:10px;">
         <form enctype="multipart/form-data" action="/api/PdfUpload/upload" method="post">
             <div class="form-group">
-                <input type="file" name="pdfFile" accept="application/pdf" class="form-control" id="fileUploadPdf">
+                <input type="file" name="pdfFile" accept="application/pdf" class="" id="fileUploadPdf">
+                
             </div>
         </form>
     </div>
@@ -279,12 +295,14 @@ $(function ()
         </div>
         <div class="col-md-2" style="padding-right:10px;">
             <div class="form-group">
-                <a href="/Uploads/DTCGNT/PDFs/ZIPs/1.BSC-GPCNTT-8_2.xlsx" class="btn btn-primary"><span class="glyphicon glyphicon-download">&nbsp;</span>Biểu mẫu tải xuống</a>
+                <a href="Uploads/DTCGNT/PDFs/ZIPs/ehsdt_man_hinh_led(18).docx" class="btn btn-primary" download>
+                <span class="glyphicon glyphicon-download">&nbsp;</span> Biểu mẫu tải xuống
+                </a>
             </div>
         </div>
         <div class="col-md-4" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
+                <input type="file" id="fileUploadXLS" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="" />
             </div>
         </div>
     </div>
@@ -294,7 +312,7 @@ $(function ()
             <div class="form-group">
                 <label class="control-label col-md-6" for="FileZipDinhKem" style="text-align:left;">File hồ sơ kỹ thuật, file kh&#225;c (.zip): </label>
                 <div class="col-md-6">
-                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="" />
+                    <input class="form-control" id="HSKhac" name="HSKhac" type="text" value="" readonly="readonly" />
                     <span class="field-validation-valid" data-valmsg-for="FileZipDinhKem" data-valmsg-replace="true"></span>
 
                 </div>
@@ -302,7 +320,7 @@ $(function ()
         </div>
         <div class="col-md-6" style="padding-right:10px;">
             <div class="form-group">
-                <input type="file" id="fileUploadZip" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' class="form-control" />
+                <input type="file" id="fileUploadZip" accept="*/*" class="" />
             </div>
             @* <div class="form-group">
                 <input type="file" id="fileUploadZip" accept="application/zip,application/x-zip,application/x-zip-compressed" class="form-control" />

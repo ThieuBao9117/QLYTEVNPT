@@ -35,6 +35,8 @@ namespace AppMvc.Net.Areas.Product.Controllers
                              .Where(c => c.ParentCategory == null)
                              .ToList();         
 
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
+            // ViewBag.Categories = categories;
             return View(categories);
         }
 

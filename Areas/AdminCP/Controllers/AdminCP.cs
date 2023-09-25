@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Areas.AdminCP.Controllers
 {
     [Area("AdminCP")]
-   
+    [Authorize]
+    [Authorize(Roles = RoleName.Administrator)]
     public class AdminCP : Controller
     {
         [Route("/admincp/")]

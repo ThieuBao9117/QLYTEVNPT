@@ -22,7 +22,7 @@ public class FileDownloadController : Controller
     public IActionResult DownloadFile(string fileName)
     {
 
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", fileName);
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "DTCGNT", "PDFs","ZIPs" ,fileName);
 
             if (System.IO.File.Exists(filePath))
             {

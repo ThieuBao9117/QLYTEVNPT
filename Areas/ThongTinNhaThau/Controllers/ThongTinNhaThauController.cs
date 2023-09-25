@@ -193,7 +193,8 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 Nam = sm.Nam,
                 NguoiLienHe = sm.NguoiLienHe,
                 Email =sm.Email,
-                DThoai= sm.DThoai
+                DThoai= sm.DThoai,
+                PhanLoai = sm.PhanLoai
             };
             _context.ThongTinNhaThaus.Add(thongtinnhathaus);
             _context.SaveChanges();

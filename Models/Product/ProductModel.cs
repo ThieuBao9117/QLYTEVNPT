@@ -52,8 +52,13 @@ namespace App.Models.Product {
 
             public List<ProductPhoto> Photos { get; set; }
              
+            [Display(Name = "Tên Người Liên Hệ")] 
             public string NguoiLH_Ten {get;set;}
+
+            [Display(Name = "Email Người Liên Hệ")] 
             public string NguoiLH_Email{get;set;}
+
+            [Display(Name = "Điện Thoại Người Liên Hệ")] 
             public string NguoiLH_DT {get; set;}
             
     }

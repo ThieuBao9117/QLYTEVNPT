@@ -382,6 +382,7 @@ namespace AppMvc.Net.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<int?>("PhanLoai")
+                        .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Ten")
