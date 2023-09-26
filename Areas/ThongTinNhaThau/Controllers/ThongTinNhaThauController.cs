@@ -56,6 +56,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
 
         [HttpGet("/dsNhaThau/")]
         [AllowAnonymous]
+        [Authorize]
         public IActionResult dsNhaThau()
         {   
             //var ThongTinNhaThau = _context.ThongTinNhaThaus;
