@@ -206,7 +206,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
                 EmailLH = _DKThau.EmailLH,
                 DT = _DKThau.DT,
                 NguoiLH = _DKThau.NguoiLH,
-                Ngay =_DKThau.Ngay,
+                Ngay =_DKThau.Ngay=DateTime.Now,
                 IDNhaThau = thongtinnhathaus.ID,
 
                 BangBaoGia = _DKThau.BangBaoGia,

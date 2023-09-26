@@ -107,10 +107,10 @@ namespace AppMvc.Areas.Product.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Slug,Content,Published,CategoryIDs,Price,NguoiLH_Ten,NguoiLH_Email,NguoiLH_DT")] CreateProductModel product)
+        public async Task<IActionResult> Create([Bind("Title,Description,Slug,Content,Published,CategoryIDs,NguoiLH_BieuMau,NguoiLH_Ten,NguoiLH_Email,NguoiLH_DT")] CreateProductModel product)
         {
             var categories = await _context.CategoryProducts.ToListAsync();
-            ViewData["categories"] = new MultiSelectList(categories, "Id", "Title");
+            ViewData["categories"] = new MultiSelectList(categories, "Id", "Title","NguoiLH_BieuMau");
 
             if (product.Slug == null)
             {
@@ -178,7 +178,11 @@ namespace AppMvc.Areas.Product.Controllers
                 Slug = product.Slug,
                 Published = product.Published,
                 CategoryIDs  =  product.ProductCategoryProducts.Select(pc => pc.CategoryID).ToArray(),
-                Price = product.Price
+                Price = product.Price,
+                NguoiLH_Ten=product.NguoiLH_Ten,
+                NguoiLH_Email=product.NguoiLH_Email,
+                NguoiLH_DT=product.NguoiLH_DT,
+                NguoiLH_BieuMau=product.NguoiLH_BieuMau
             };
 
             var categories = await _context.CategoryProducts.ToListAsync();
@@ -192,7 +196,7 @@ namespace AppMvc.Areas.Product.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductID,Title,Description,Slug,Content,Published,CategoryIDs,Price")] CreateProductModel product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductID,Title,Description,Slug,Content,Published,CategoryIDs,Price,NguoiLH_Email,NguoiLH_Ten,NguoiLH_DT,NguoiLH_BieuMau")] CreateProductModel product)
         {
             if (id != product.ProductID)
             {
@@ -232,6 +236,10 @@ namespace AppMvc.Areas.Product.Controllers
                     productUpdate.Slug = product.Slug;
                     productUpdate.DateUpdated = DateTime.Now;
                     productUpdate.Price = product.Price;
+                    productUpdate.NguoiLH_Ten=product.NguoiLH_Ten;
+                    productUpdate.NguoiLH_Email=product.NguoiLH_Email;
+                    productUpdate.NguoiLH_DT=product.NguoiLH_DT;
+                    productUpdate.NguoiLH_BieuMau=product.NguoiLH_BieuMau;
 
 
                     // Update PostCategory

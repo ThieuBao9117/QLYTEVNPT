@@ -20,18 +20,25 @@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.NguoiLH_Email)
+            </th>             
             <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>            
-            <th>
-                @Html.DisplayNameFor(model => model.Published)
+                @Html.DisplayNameFor(model => model.NguoiLH_DT)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.NguoiLH_Ten)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateUpdated)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -52,17 +59,23 @@
                 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>           
+                @Html.DisplayFor(modelItem => item.NguoiLH_Email)
+            </td>            
             <td>
-                @Html.DisplayFor(modelItem => item.Published)
+                @Html.DisplayFor(modelItem => item.NguoiLH_DT)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.NguoiLH_Ten)
+            </td> 
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td> 
             <td>
                 @Html.DisplayFor(modelItem => item.DateUpdated)
-            </td>
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td> 
             <td>
                 
                 <a asp-action="Details" asp-route-id="@item.ProductID">Chi tiết</a> |

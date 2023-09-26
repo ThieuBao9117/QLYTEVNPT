@@ -107,7 +107,7 @@ namespace App.Menu {
                 Items.Add(new SidebarItem() { Type = SidebarItemType.Divider});
                 Items.Add(new SidebarItem() { 
                     Type = SidebarItemType.NavItem,
-                    Title = "Quản lý sản phẩm",
+                    Title = "Quản lý TT Đấu Thầu",
                     AwesomeIcon = "far fa-folder",
                     collapseID = "product",
                     Items = new List<SidebarItem>() {
@@ -116,28 +116,28 @@ namespace App.Menu {
                                 Controller = "CategoryProduct",
                                 Action = "Index", 
                                 Area = "Product",
-                                Title = "Các chuyên mục"                        
+                                Title = "Danh Mục Loại Đấu Thầu"                        
                         },
                          new SidebarItem() { 
                                 Type = SidebarItemType.NavItem,
                                 Controller = "CategoryProduct",
                                 Action = "Create", 
                                 Area = "Product",
-                                Title = "Tạo chuyên mục"                        
+                                Title = "Tạo Mục Loại Đấu Thầu"                        
                         },   
                         new SidebarItem() { 
                                 Type = SidebarItemType.NavItem,
                                 Controller = "ProductManage",
                                 Action = "Index", 
                                 Area = "Product",
-                                Title = "Các sản phẩm"                        
+                                Title = "Danh Sách Đợt Đấu Thầu"                        
                         }, 
                         new SidebarItem() { 
                                 Type = SidebarItemType.NavItem,
                                 Controller = "ProductManage",
                                 Action = "Create", 
                                 Area = "Product",
-                                Title = "Tạo sản phẩm"                        
+                                Title = "Tạo Dự Án Đấu Thầu"                        
                         },                                   
                     },
                 });

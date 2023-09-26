@@ -66,6 +66,30 @@
                 <textarea asp-for="Content" class="form-control"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="NguoiLH_Ten" class="control-label"></label>
+                <textarea asp-for="NguoiLH_Ten" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_Ten" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NguoiLH_Email" class="control-label"></label>
+                <textarea asp-for="NguoiLH_Email" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_Email" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="NguoiLH_DT" class="control-label"></label>
+                <textarea asp-for="NguoiLH_DT" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_DT" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="NguoiLH_BieuMau" class="control-label"></label>
+                <textarea asp-for="NguoiLH_BieuMau" class="form-control"></textarea>
+                <span asp-validation-for="NguoiLH_BieuMau" class="text-danger"></span>
+                   <span class="btn btn-primary" onclick="ClickButtoUpload()">Upload File Mẫu</span>
+
+                    <div id="box-photo-upload" class="d-flex flex-wrap photo-upload" data-id="@Model.NguoiLH_BieuMau">    
+
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)

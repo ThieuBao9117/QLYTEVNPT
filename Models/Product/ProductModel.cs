@@ -60,6 +60,10 @@ namespace App.Models.Product {
 
             [Display(Name = "Điện Thoại Người Liên Hệ")] 
             public string NguoiLH_DT {get; set;}
+
+            [Display(Name = "Biểu mẫu tải xuống")]
+            public string NguoiLH_BieuMau {get;set;}
+
             
     }
 }

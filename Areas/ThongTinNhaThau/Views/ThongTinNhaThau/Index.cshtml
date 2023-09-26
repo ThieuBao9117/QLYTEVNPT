@@ -236,13 +236,13 @@ $(function ()
         </div> 
         <div class="col-md-12 col-xs-12">
         <div class="col-md-6" style="padding-right: 10px;">
-        <div class="form-group">
+        @* <div class="form-group">
             <label class="control-label col-md-6" for="NgayCapNhat" style="text-align:left;">Ngày (*): </label>
             <div class="col-md-6">
                 <input class="form-control" data-val="true" data-val-required="Bắt buộc nhập" id="txtDatePicker" name="Ngay" type="date" value="" required />
                 <span class="field-validation-valid" data-valmsg-for="NgayCapNhat" data-valmsg-replace="true"></span>
             </div>
-        </div>
+        </div> *@
     </div>  
     </div>
     </div>
@@ -294,9 +294,9 @@ $(function ()
             </div>
         </div>
         <div class="col-md-2" style="padding-right:10px;">
-            <div class="form-group">
-                <a href="Uploads/DTCGNT/PDFs/ZIPs/ehsdt_man_hinh_led(18).docx" class="btn btn-primary" download>
-                <span class="glyphicon glyphicon-download">&nbsp;</span> Biểu mẫu tải xuống
+             <div class="form-group">
+                <a href="@(Product.NguoiLH_BieuMau)" class="btn btn-primary" download target="_blank">
+                    <span class="glyphicon glyphicon-download">&nbsp;</span> Biểu mẫu tải xuống
                 </a>
             </div>
         </div>
