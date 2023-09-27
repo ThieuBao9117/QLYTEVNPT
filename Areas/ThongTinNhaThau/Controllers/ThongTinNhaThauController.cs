@@ -55,16 +55,61 @@ namespace App.Areas.ThongTinNhaThau.Controllers
         }
 
         [HttpGet("/dsNhaThau/")]
-        [AllowAnonymous]
         [Authorize]
-        public IActionResult dsNhaThau()
-        {   
-            //var ThongTinNhaThau = _context.ThongTinNhaThaus;
-            var DKThauList = _context.DKThaus.ToList();
-            //if(DKThau == null || DKThau.ToList().Count == 0)
-            return View(DKThauList);
+        // Phần code lấy ra danh sách nhà Thầu chưa phân trang
+        // public IActionResult dsNhaThau()
+        // {   
+        //     //var ThongTinNhaThau = _context.ThongTinNhaThaus;
+        //     var DKThauList = _context.DKThaus.ToList();
             
-        }
+            
+        //     //if(DKThau == null || DKThau.ToList().Count == 0)
+        //     return View(DKThauList);
+            
+            
+        // }
+        // Phân Trang Danh Sách Nhà Thầu và Lấy ra danh sách nhà Thầu
+        public IActionResult dsNhaThau(int currentPage = 1, int pageSize = 10)
+        {
+            // Xác định tổng số lượng sản phẩm
+            int totalItems = _context.DKThaus.Count();
+
+            // Tính tổng số trang dựa trên pageSize
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // Đảm bảo currentPage nằm trong khoảng hợp lệ
+            if (currentPage < 1)
+            {
+                currentPage = 1;
+            }
+            else if (currentPage > totalPages)
+            {
+                currentPage = totalPages;
+            }
+
+            // Tính skip (số lượng bỏ qua) dựa trên currentPage và pageSize
+            int skip = (currentPage - 1) * pageSize;
+
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var DKThauList = _context.DKThaus
+                .OrderByDescending(item => item.Ngay)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            // Tạo một đối tượng PagingModel để truyền thông tin phân trang cho view
+            var pagingModel = new PagingModel()
+            {
+                currentpage = currentPage,
+                countpages = totalPages,
+                generateUrl = (pageNumber) => Url.Action("dsNhaThau", new { currentPage = pageNumber, pageSize = pageSize })
+            };
+
+            ViewBag.PagingModel = pagingModel;
+
+            return View(DKThauList);
+}
+
      // thông tin nhà thầu detail
         [HttpGet("dsNhaThau/detail/{ID}")]
         public async Task<IActionResult> Details1(int? ID)
@@ -172,7 +217,7 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             return RedirectToAction(nameof(dsNhaThau));
         }
 
-
+        // Đây là trang khi nhấp vào đấu thầu sẽ post thông tin thông tin dữ liệu lên DB
         [HttpPost("/trangthongtin/")]
         [AllowAnonymous]
         public ActionResult trangthongtin(ThongTinNhaThauModel sm, DKThauModel _DKThau, IFormFile file)
@@ -221,9 +266,9 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             //return View("Index");
             return RedirectToAction("Index", "Home", new { area = "" });
         }
-        // xuất file excel
         
         
+        // Đây là trang nhận các thông tin từ trangthongtin trả về
         [HttpGet("/trangthongtin/")]
         [AllowAnonymous]
         public IActionResult Index()
@@ -261,6 +306,8 @@ namespace App.Areas.ThongTinNhaThau.Controllers
             return View(ThongTinNhaThau);
         }
        
+
+       //Đây là trang sắp xếp
         [HttpGet("/sort/")]
         [AllowAnonymous]
         public IActionResult DanhSachNhaThau()

@@ -3,7 +3,7 @@
 @inject AdminSidebarService _AdminSidebarService
 
 @{
-    ViewData["Title"] = "Thêm sản phẩm";
+    ViewData["Title"] = "Thêm Dự Án Thầu";
     var list = ViewData["categories"] as MultiSelectList;
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml"; 
     var _User = ViewBag.User as App.Models.AppUser;   
@@ -68,8 +68,25 @@
                 <label asp-for="NguoiLH_BieuMau" class="control-label"></label>
                 <textarea asp-for="NguoiLH_BieuMau" class="form-control"></textarea>
                 <span asp-validation-for="NguoiLH_BieuMau" class="text-danger"></span>
-
+                <div class="form-group">
+                    <label for="fileUpload" class="control-label">Tải biểu mẫu lên</label>
+                    <input type="file" id="fileUpload" name="form-control-file" class="form-control-file">
+                </div>
             </div>
+            <script>
+                 // Xử lý sự kiện khi người dùng chọn tệp tải lên
+                 document.getElementById("fileUpload").addEventListener("change", function () { //fileUpload
+                    var fileInput = document.getElementById("fileUpload");
+                    var fileNameDisplay = document.getElementById("NguoiLH_BieuMau");
+
+                    if (fileInput.files.length > 0) {
+                        fileNameDisplay.value = fileInput.files[0].name;
+                    } else {
+                        fileNameDisplay.value = "";
+                    }
+                 });
+            </script>
+            
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Author)

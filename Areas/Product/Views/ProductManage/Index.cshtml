@@ -2,7 +2,7 @@
 @using App.Menu
 @inject AdminSidebarService _AdminSidebarService
 @{
-    ViewData["Title"] = "Danh sách Sản phẩm";
+    ViewData["Title"] = "Danh Sách Đợt Đấu Thầu ";
     Layout =  "/Views/Shared/_LayoutAdmin.cshtml";    
 }
 
@@ -10,9 +10,9 @@
 <partial name="_AlertMessage" />
 
 <p>
-    <a asp-action="Create">Tạo sản phẩm mới</a>
+    <a asp-action="Create">Tạo dự án Thầu mới</a>
 </p>
-<p>Tổng số sản phẩm: @ViewBag.totalPosts</p>
+<p>Tổng số dự án : @ViewBag.totalPosts</p>
 <table class="table">
     <thead>
         <tr>
